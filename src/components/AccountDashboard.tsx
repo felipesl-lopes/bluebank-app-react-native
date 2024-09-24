@@ -74,7 +74,7 @@ const TextAccount = styled.Text`
 
 const IconVisible = styled(FontAwesome)`
     font-size: 24px;
-    color: gray;
+    color: ${theme.colors.gray};
     position: absolute;
     align-self: flex-end;
     top: 6px;

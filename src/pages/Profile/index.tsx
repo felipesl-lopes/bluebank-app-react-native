@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Keyboard } from "react-native";
 import * as yup from "yup";
@@ -20,10 +20,9 @@ import {
 } from "./styles";
 
 export const Profile: React.FunctionComponent = () => {
-    const { user, setUser, isChecked } = useContext(AuthContext);
+    const { user, setUser, isChecked, setLoading } = useContext(AuthContext);
     const [show, setShow] = useState<boolean>(false);
     const [data, setData] = useState<IFormEditProfile>({} as IFormEditProfile);
-    const [password, setPassword] = useState<string>("");
 
     const schema = yup.object({
         name: yup.string().required("Informe seu nome completo."),
@@ -37,12 +36,14 @@ export const Profile: React.FunctionComponent = () => {
             .required("Digite seu CPF."),
     });
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const defaultValues = {
-        name: user.name,
-        email: user.email,
-        cpf: user.cpf,
-    };
+    const defaultValues = useMemo(
+        () => ({
+            name: user.name,
+            email: user.email,
+            cpf: user.cpf,
+        }),
+        [user.name, user.email, user.cpf],
+    );
 
     const {
         control,
@@ -55,10 +56,8 @@ export const Profile: React.FunctionComponent = () => {
     });
 
     useEffect(() => {
-        // quando o valor da state user mudar, proveniente da função handleDataChange(),
-        // o useEffect será chamado e o reset() atualizará o valor padrão pro novo salvo no user
         reset(defaultValues);
-    }, [defaultValues, reset]);
+    }, [reset, defaultValues]);
 
     const updateData = async (data: IFormEditProfile) => {
         setShow(true);
@@ -66,14 +65,12 @@ export const Profile: React.FunctionComponent = () => {
         Keyboard.dismiss();
     };
 
-    const handleFunction = async () => {
-        await getUpdateProfile(
-            data,
-            user,
-            setUser,
-            isChecked,
-            setShow,
-            password,
+    const handleFunction = async (password: string) => {
+        setLoading(true);
+        await getUpdateProfile(data, user, setUser, isChecked, password).then(
+            () => {
+                setLoading(false);
+            },
         );
     };
 
@@ -150,7 +147,6 @@ export const Profile: React.FunctionComponent = () => {
             </Scroll>
 
             <ModalPasswordConfirm
-                setPassword={setPassword}
                 setShow={setShow}
                 show={show}
                 handleFunction={handleFunction}

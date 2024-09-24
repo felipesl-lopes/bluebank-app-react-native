@@ -8,5 +8,6 @@ export default {
         background: "#F0F5FF", // Cor de fundo
         text: "#333333", // Cor neutra
         accent: "#FFD700", // Amarelo como destaque para áreas importantes
+        red: "#DC143C", // Vermelho para alerta
     },
 };

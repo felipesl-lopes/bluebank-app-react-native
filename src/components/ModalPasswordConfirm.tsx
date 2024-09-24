@@ -15,8 +15,7 @@ import { PrimaryButton } from "./SendButton";
 interface IProps {
     show: boolean;
     setShow: (value: boolean) => void;
-    setPassword: (value: string) => void;
-    handleFunction: () => Promise<void>;
+    handleFunction: (password: string) => Promise<void>;
 }
 
 interface IPassword {
@@ -26,10 +25,9 @@ interface IPassword {
 export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
     show,
     setShow,
-    setPassword,
     handleFunction,
 }) => {
-    const { user, setLoading } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const schema = yup.object({
         password: yup
             .string()
@@ -46,34 +44,28 @@ export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
         resolver: yupResolver(schema),
     });
 
-    const confirmAlterData = async (value: IPassword) => {
+    const confirmDataChange = async (value: IPassword) => {
         const credentials = auth.EmailAuthProvider.credential(
             user.email,
             value.password,
         );
 
-        setLoading(true);
-
-        const val = auth().currentUser;
-
-        val &&
-            (await val
-                .reauthenticateWithCredential(credentials)
-                .then(async () => {
-                    setPassword(value.password);
-                    await handleFunction().then(() => {
+        auth()
+            .currentUser?.reauthenticateWithCredential(credentials)
+            .then(async () => {
+                await handleFunction(value.password)
+                    .then(() => {
                         setShow(false);
                         reset();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        Alert.alert(
+                            "Erro",
+                            "Houve um erro ao confirmar a senha. Tente novamente.",
+                        );
                     });
-                })
-                .catch(() => {
-                    Alert.alert(
-                        "Erro ao cadastrar biometria. Tente novamente.",
-                    );
-                })
-                .finally(() => {
-                    setLoading(false);
-                }));
+            });
     };
 
     return (
@@ -101,7 +93,7 @@ export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
                     <View style={{ marginBottom: 20 }} />
 
                     <PrimaryButton
-                        onPress={handleSubmit(confirmAlterData)}
+                        onPress={handleSubmit(confirmDataChange)}
                         title="Confirmar"
                     />
                 </Container>

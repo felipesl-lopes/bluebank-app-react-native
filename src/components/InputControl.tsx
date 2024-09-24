@@ -1,30 +1,31 @@
-import Ionicon from "react-native-vector-icons/Ionicons";
 import React, { useState } from "react";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FieldValues, Path } from "react-hook-form";
 import { TextInputProps } from "react-native";
+import Ionicon from "react-native-vector-icons/Ionicons";
 import styled from "styled-components/native";
 import theme from "../global/styles/theme";
 
-interface IPropsInputControl extends TextInputProps {
-    control: Control;
-    name: string;
-    errors: string | undefined;
+interface IPropsInputControl<T extends FieldValues> extends TextInputProps {
+    control: Control<T>; // formulário genérico
+    name: Path<T>; // valor genérico
+    errors?: string;
     iconName: string;
 }
 
-interface IPropsInputPasswordControl extends TextInputProps {
-    control: Control;
-    name: string;
+interface IPropsInputPasswordControl<T extends FieldValues>
+    extends TextInputProps {
+    control: Control<T>; // formulário genérico
+    name: Path<T>; // valor genérico
     errors: string | undefined;
 }
 
-export const InputControl: React.FunctionComponent<IPropsInputControl> = ({
+export const InputControl = <T extends FieldValues>({
     iconName,
     control,
     name,
     errors,
     ...otherProps
-}) => {
+}: IPropsInputControl<T>) => {
     return (
         <Container>
             <ViewInput>
@@ -46,9 +47,12 @@ export const InputControl: React.FunctionComponent<IPropsInputControl> = ({
     );
 };
 
-export const InputPasswordControl: React.FunctionComponent<
-    IPropsInputPasswordControl
-> = ({ control, name, errors, ...otherProps }) => {
+export const InputPasswordControl = <T extends FieldValues>({
+    control,
+    name,
+    errors,
+    ...otherProps
+}: IPropsInputPasswordControl<T>) => {
     const [textSecure, setTextSecure] = useState<boolean>(true);
 
     const handleSecure = () => {
@@ -96,24 +100,25 @@ const ViewInput = styled.View`
 `;
 
 const IconType = styled(Ionicon)`
-    font-size: 24px;
+    font-size: 20px;
     color: ${theme.colors.primary};
 `;
 
 const Input = styled.TextInput`
-    font-size: 18px;
+    font-size: 17px;
+    padding: 2px;
     margin: 0 10px;
     flex: 1;
 `;
 
 const IconEye = styled(Ionicon)`
     font-size: 24px;
-    color: ${theme.colors.text};
+    padding: 0 8px;
 `;
 
 const TextError = styled.Text`
     position: absolute;
     margin-left: 10px;
     bottom: 0;
-    color: ${theme.colors.primary};
+    color: ${theme.colors.red};
 `;

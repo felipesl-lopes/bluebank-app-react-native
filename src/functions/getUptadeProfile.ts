@@ -9,41 +9,34 @@ export const getUpdateProfile = async (
     user: IUser,
     setUser: (value: React.SetStateAction<IUser>) => void,
     isChecked: boolean,
-    setShow: React.Dispatch<React.SetStateAction<boolean>>,
     password: string,
 ) => {
-    const current = auth().currentUser;
+    await auth()
+        .currentUser?.updateEmail(data.email)
+        .then(async () => {
+            await firestore().collection("users").doc(user.uid).update({
+                name: data.name,
+                email: data.email,
+                cpf: data.cpf,
+            });
+        })
+        .then(async () => {
+            setUser({
+                ...user,
+                name: data.name,
+                email: data.email,
+                cpf: data.cpf,
+            });
 
-    current &&
-        (await current
-            .updateEmail(data.email)
-            .then(async () => {
-                await firestore().collection("users").doc(user.uid).update({
-                    name: data.name,
-                    email: data.email,
-                    cpf: data.cpf,
-                });
-            })
-            .then(async () => {
-                setUser({
-                    ...user,
-                    name: data.name,
-                    email: data.email,
-                    cpf: data.cpf,
-                });
-
-                await Keychain.getGenericPassword().then(async val => {
-                    if (val) {
-                        await Keychain.setGenericPassword(data.email, password);
-                    }
-                });
-
-                // condicional para salvar preferencias de email no login
-                if (isChecked) {
-                    await AsyncStorage.setItem("@keyEmailUser", data.email);
+            await Keychain.getGenericPassword().then(async val => {
+                if (val) {
+                    await Keychain.setGenericPassword(data.email, password);
                 }
-            })
-            .finally(() => {
-                setShow(false);
-            }));
+            });
+
+            // condicional para salvar preferencias de email no login
+            if (isChecked) {
+                await AsyncStorage.setItem("@keyEmailUser", data.email);
+            }
+        });
 };

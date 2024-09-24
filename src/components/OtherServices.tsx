@@ -40,6 +40,10 @@ const Title = styled.Text`
     font-size: 16px;
     font-weight: bold;
     margin-right: 6px;
+    color: ${theme.colors.text};
 `;
 
-const Description = styled.Text``;
+const Description = styled.Text`
+    color: ${theme.colors.text};
+    font-size: 15px;
+`;

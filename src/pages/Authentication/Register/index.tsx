@@ -1,7 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import * as yup from "yup";
 import {
@@ -11,6 +10,7 @@ import {
 import { LoadingModal } from "../../../components/LoadingModal";
 import { LoadingScreen } from "../../../components/LoadingScreen";
 import { Logo_name_white } from "../../../components/Logo";
+import { Margin } from "../../../components/Margin";
 import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import { IFormRegister } from "../../../interface";
@@ -77,10 +77,8 @@ export const Register: React.FunctionComponent = () => {
             >
                 <ViewOpacity>
                     <ViewLogo>
-                        <Logo_name_white scale={2.3} />
+                        <Logo_name_white scale={3} />
                     </ViewLogo>
-
-                    <View style={{ marginBottom: "10%" }} />
 
                     <Scroll showsVerticalScrollIndicator={false}>
                         <InputControl
@@ -141,10 +139,14 @@ export const Register: React.FunctionComponent = () => {
                             }
                         />
 
+                        <Margin pixels={32} />
+
                         <PrimaryButton
                             title="CRIAR CONTA"
                             onPress={handleSubmit(handleRegister)}
                         />
+
+                        <Margin pixels={8} />
 
                         <SecondaryButton title="ENTRAR" screen={"Login"} />
                     </Scroll>

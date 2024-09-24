@@ -13,6 +13,7 @@ import {
 import { LoadingModal } from "../../../components/LoadingModal";
 import { LoadingScreen } from "../../../components/LoadingScreen";
 import { Logo_name_white } from "../../../components/Logo";
+import { Margin } from "../../../components/Margin";
 import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
 import { AuthContext } from "../../../contexts/auth";
 import { getAuthWithBiometry } from "../../../functions/getAuthWithBiometry";
@@ -24,12 +25,16 @@ import { getItem } from "../../../storage";
 import {
     ButtonBiometry,
     Container,
+    ContainerSeparator,
+    IconBiometry,
+    LineSeparator,
     Scroll,
-    Text,
     TextBiometry,
     TextCheck,
     TextRecoverPassword,
+    TextSeparator,
     ViewCheckBox,
+    ViewComponents,
     ViewLogo,
     ViewOpacity,
     Wallpaper,
@@ -130,38 +135,12 @@ export const Login: React.FunctionComponent = () => {
             >
                 <ViewOpacity>
                     <ViewLogo>
-                        <Logo_name_white scale={2.3} />
+                        <Logo_name_white scale={3} />
                     </ViewLogo>
 
                     <Scroll showsVerticalScrollIndicator={false}>
-                        {suportedBiometrics ? (
-                            haveBiometrics ? (
-                                <View>
-                                    <ButtonBiometry
-                                        onPress={() =>
-                                            getAuthWithBiometry(
-                                                setUser,
-                                                setLoading,
-                                            )
-                                        }
-                                        activeOpacity={0.6}
-                                    >
-                                        <TextBiometry>
-                                            Entrar com biometria
-                                        </TextBiometry>
-                                    </ButtonBiometry>
-
-                                    <Text>OU</Text>
-                                </View>
-                            ) : (
-                                <View style={{ marginBottom: "10%" }} />
-                            )
-                        ) : (
-                            <View style={{ marginBottom: "10%" }} />
-                        )}
-
                         <InputControl
-                            iconName="home"
+                            iconName="mail"
                             placeholder="E-mail"
                             keyboardType="email-address"
                             autoCapitalize="none"
@@ -184,32 +163,72 @@ export const Login: React.FunctionComponent = () => {
                             }
                         />
 
-                        <ViewCheckBox>
-                            <TextCheck>SALVAR E-MAIL</TextCheck>
-                            <ToggleSwitch
-                                isOn={isChecked}
-                                onColor={theme.colors.primary}
-                                offColor={theme.colors.gray}
-                                onToggle={handleToggle}
-                                size="small"
-                            />
-                        </ViewCheckBox>
+                        <ViewComponents>
+                            <ViewCheckBox>
+                                <TextCheck>Salvar e-mail</TextCheck>
+                                <ToggleSwitch
+                                    isOn={isChecked}
+                                    onColor={theme.colors.secondary}
+                                    offColor={theme.colors.gray}
+                                    onToggle={handleToggle}
+                                    size="small"
+                                />
+                            </ViewCheckBox>
+
+                            <TextRecoverPassword
+                                onPress={() => navigate("ResetPassword")}
+                            >
+                                Esqueci minha senha
+                            </TextRecoverPassword>
+                        </ViewComponents>
+
+                        <Margin pixels={40} />
 
                         <PrimaryButton
                             title="ENTRAR"
                             onPress={handleSubmit(handleLogin)}
                         />
 
+                        <Margin pixels={8} />
+
                         <SecondaryButton
                             title="CRIAR CONTA"
                             screen={"Register"}
                         />
 
-                        <TextRecoverPassword
-                            onPress={() => navigate("ResetPassword")}
-                        >
-                            RECUPERAR SENHA
-                        </TextRecoverPassword>
+                        {suportedBiometrics ? (
+                            haveBiometrics ? (
+                                <View>
+                                    <ContainerSeparator>
+                                        <LineSeparator />
+                                        <TextSeparator>OU</TextSeparator>
+                                        <LineSeparator />
+                                    </ContainerSeparator>
+
+                                    <ButtonBiometry
+                                        style={{ elevation: 4 }}
+                                        onPress={() =>
+                                            getAuthWithBiometry(
+                                                setUser,
+                                                setLoading,
+                                            )
+                                        }
+                                        activeOpacity={0.6}
+                                    >
+                                        <TextBiometry>
+                                            Entrar com biometria
+                                        </TextBiometry>
+                                        <IconBiometry
+                                            source={require("../../../assets/biometry.png")}
+                                        />
+                                    </ButtonBiometry>
+                                </View>
+                            ) : (
+                                <View style={{ marginBottom: "10%" }} />
+                            )
+                        ) : (
+                            <View style={{ marginBottom: "10%" }} />
+                        )}
                     </Scroll>
                 </ViewOpacity>
             </Wallpaper>

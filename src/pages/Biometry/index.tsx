@@ -11,9 +11,8 @@ export const Biometry: React.FunctionComponent = () => {
     const rnBiometrics = new ReactNativeBiometrics();
     const { goBack } = useNavigation();
 
-    const { user } = useContext(AuthContext);
+    const { user, setLoading } = useContext(AuthContext);
     const [show, setShow] = useState<boolean>(false);
-    const [password, setPassword] = useState<string>("");
 
     const getRegisterBiometry = async () => {
         await rnBiometrics
@@ -29,11 +28,16 @@ export const Biometry: React.FunctionComponent = () => {
             });
     };
 
-    const handleFunction = async () => {
-        await Keychain.setGenericPassword(user.email, password).then(() => {
-            Alert.alert("Biometria cadastrada");
-            goBack();
-        });
+    const handleFunction = async (password: string) => {
+        setLoading(true);
+        await Keychain.setGenericPassword(user.email, password)
+            .then(() => {
+                Alert.alert("Biometria cadastrada");
+                goBack();
+            })
+            .then(() => {
+                setLoading(false);
+            });
     };
 
     return (
@@ -57,7 +61,6 @@ export const Biometry: React.FunctionComponent = () => {
             <ModalPasswordConfirm
                 setShow={setShow}
                 show={show}
-                setPassword={setPassword}
                 handleFunction={handleFunction}
             />
         </Container>
