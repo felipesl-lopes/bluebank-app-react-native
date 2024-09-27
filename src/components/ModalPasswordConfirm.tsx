@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import auth from "@react-native-firebase/auth";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Alert, Modal, View } from "react-native";
+import { Alert, Modal } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import styled from "styled-components/native";
 import * as yup from "yup";
@@ -10,7 +10,7 @@ import { AuthContext } from "../contexts/auth";
 import theme from "../global/styles/theme";
 import { InputPasswordControl } from "./InputControl";
 import { LoadingModal } from "./LoadingModal";
-import { PrimaryButton } from "./SendButton";
+import { Margin } from "./Margin";
 
 interface IProps {
     show: boolean;
@@ -27,7 +27,8 @@ export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
     setShow,
     handleFunction,
 }) => {
-    const { user } = useContext(AuthContext);
+    const { user, setLoading } = useContext(AuthContext);
+
     const schema = yup.object({
         password: yup
             .string()
@@ -44,7 +45,12 @@ export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
         resolver: yupResolver(schema),
     });
 
+    /**
+     * Função para confirmação de senha.
+     * @param value
+     */
     const confirmDataChange = async (value: IPassword) => {
+        setLoading(true);
         const credentials = auth.EmailAuthProvider.credential(
             user.email,
             value.password,
@@ -53,19 +59,25 @@ export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
         auth()
             .currentUser?.reauthenticateWithCredential(credentials)
             .then(async () => {
-                await handleFunction(value.password)
-                    .then(() => {
-                        setShow(false);
-                        reset();
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        Alert.alert(
-                            "Erro",
-                            "Houve um erro ao confirmar a senha. Tente novamente.",
-                        );
-                    });
+                await handleFunction(value.password).then(() => {
+                    setShow(false);
+                    reset();
+                });
+            })
+            .catch(() => {
+                Alert.alert(
+                    "Erro ao confirmar senha",
+                    "Verifique sua senha e tente novamente.",
+                );
+            })
+            .finally(() => {
+                setLoading(false);
             });
+    };
+
+    const cancel = () => {
+        reset();
+        setShow(false);
     };
 
     return (
@@ -76,9 +88,20 @@ export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
             animationType="fade"
         >
             <Screen>
-                <Container>
-                    <ButtonCancel name="close" onPress={() => setShow(false)} />
-                    <Title>Digite a sua senha</Title>
+                <Container style={{ elevation: 10 }}>
+                    <ButtonCancel name="close" onPress={cancel} />
+
+                    <Title>Confirme sua senha</Title>
+
+                    <Margin pixels={8} />
+
+                    <Text>
+                        Para confirmar as alterações de seus dados, por favor,
+                        insira sua senha.
+                    </Text>
+
+                    <Margin pixels={16} />
+
                     <InputPasswordControl
                         placeholder="Senha"
                         autoCapitalize="none"
@@ -90,12 +113,19 @@ export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
                         }
                     />
 
-                    <View style={{ marginBottom: 20 }} />
+                    <Margin pixels={12} />
 
-                    <PrimaryButton
-                        onPress={handleSubmit(confirmDataChange)}
-                        title="Confirmar"
-                    />
+                    <ContainerButtons>
+                        <TextButton
+                            onPress={cancel}
+                            style={{ color: undefined }}
+                        >
+                            CANCELAR
+                        </TextButton>
+                        <TextButton onPress={handleSubmit(confirmDataChange)}>
+                            CONFIRMAR
+                        </TextButton>
+                    </ContainerButtons>
                 </Container>
                 <LoadingModal />
             </Screen>
@@ -111,21 +141,37 @@ const Screen = styled.View`
 `;
 
 const Container = styled.View`
-    background-color: ${theme.colors.background};
+    background-color: ${theme.colors.background2};
     border-radius: 10px;
-    padding: 14px;
-    width: 80%;
+    padding: 20px;
+    width: 90%;
 `;
 
 const Title = styled.Text`
     font-size: 20px;
     font-weight: 500;
-    margin-bottom: 30px;
+    color: black;
+`;
+
+const Text = styled.Text`
+    font-size: 16px;
 `;
 
 const ButtonCancel = styled(Ionicons)`
     position: absolute;
     right: 0;
-    font-size: 25px;
-    padding: 7px;
+    font-size: 26px;
+    padding: 10px;
+`;
+
+const ContainerButtons = styled.View`
+    flex-direction: row;
+    align-self: flex-end;
+`;
+
+const TextButton = styled.Text`
+    font-size: 16px;
+    font-weight: 500;
+    color: ${theme.colors.primary};
+    margin-left: 24px;
 `;

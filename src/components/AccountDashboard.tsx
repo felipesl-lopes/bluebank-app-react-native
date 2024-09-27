@@ -1,6 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
-import LinearGradient from "react-native-linear-gradient";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import styled from "styled-components/native";
 import { AuthContext } from "../contexts/auth";
@@ -25,65 +24,90 @@ export const AccountDashboard: React.FunctionComponent = () => {
     }, [user.uid]);
 
     return (
-        <LinearGradient
-            colors={["#000000", "#142556"]}
-            style={{
-                borderRadius: 10,
-                alignSelf: "center",
-                padding: 14,
-                width: "80%",
-                elevation: 10,
-            }}
-        >
-            <IconVisible
-                onPress={handlevisibleBalance}
-                name={visibleBalance ? "eye" : "eye-slash"}
-            />
-            <Name>{user && user.name}</Name>
+        <Container style={{ elevation: 2 }}>
+            <Background
+                source={require("../assets/background/background-app/background-card.png")}
+                resizeMode="cover"
+            >
+                <Overlay>
+                    <IconVisible
+                        onPress={handlevisibleBalance}
+                        name={visibleBalance ? "eye" : "eye-slash"}
+                    />
+                    <Text>{user && user.name}</Text>
 
-            <TextAccount>1234 ********-1</TextAccount>
+                    <Text>1234 ********-1</Text>
 
-            <TextAccount>
-                R$
-                {visibleBalance
-                    ? balance.toLocaleString("pt-BR", {
-                          minimumFractionDigits: 2,
-                      })
-                    : " **"}
-            </TextAccount>
+                    <Line />
 
-            <Transactions onPress={() => navigate("Transacoes")}>
-                Ver transações
-            </Transactions>
-        </LinearGradient>
+                    <TextBalance>
+                        R$
+                        {visibleBalance
+                            ? balance.toLocaleString("pt-BR", {
+                                  minimumFractionDigits: 2,
+                              })
+                            : " **"}
+                    </TextBalance>
+
+                    <Transactions onPress={() => navigate("Transacoes")}>
+                        Ver transações
+                    </Transactions>
+                </Overlay>
+            </Background>
+        </Container>
     );
 };
 
-const Name = styled.Text`
-    font-size: 17px;
-    color: ${theme.colors.white};
-    margin-bottom: 10px;
+const Container = styled.View`
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    overflow: hidden;
 `;
 
-const TextAccount = styled.Text`
+const Background = styled.ImageBackground`
+    flex: 1;
+    justify-content: center;
+`;
+
+const Overlay = styled.View`
+    flex: 1;
+    background-color: rgba(0, 0, 200, 0.5);
+    padding: 14px;
+`;
+
+const Line = styled.View`
+    padding: 0.2px;
+    width: 100%;
+    background-color: ${theme.colors.background2};
+    margin: 8px 0;
+`;
+
+const Text = styled.Text`
     font-size: 19px;
     color: ${theme.colors.white};
-    font-weight: 500;
+`;
+
+const TextBalance = styled.Text`
+    font-size: 20px;
+    color: ${theme.colors.accent};
+    font-weight: bold;
     margin-bottom: 6px;
+    flex: 1;
 `;
 
 const IconVisible = styled(FontAwesome)`
     font-size: 24px;
-    color: ${theme.colors.gray};
     position: absolute;
     align-self: flex-end;
-    top: 6px;
-    right: 12px;
     z-index: 2;
+    padding: 12px;
+    color: ${theme.colors.background2};
 `;
 
 const Transactions = styled.Text`
     text-align: right;
-    color: ${theme.colors.white};
     text-decoration: underline;
+    font-size: 16px;
+    color: ${theme.colors.white};
 `;

@@ -9,18 +9,12 @@ import {
 } from "../../../components/InputControl";
 import { LoadingModal } from "../../../components/LoadingModal";
 import { LoadingScreen } from "../../../components/LoadingScreen";
-import { Logo_name_white } from "../../../components/Logo";
 import { Margin } from "../../../components/Margin";
-import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
+import { PrimaryButton } from "../../../components/SendButton";
+import { TextNavigation } from "../../../components/TextNavigation";
 import { AuthContext } from "../../../contexts/auth";
 import { IFormRegister } from "../../../interface";
-import {
-    Container,
-    Scroll,
-    ViewLogo,
-    ViewOpacity,
-    Wallpaper,
-} from "../Login/styles";
+import { Container, Scroll, Title } from "../Login/styles";
 
 export const Register: React.FunctionComponent = () => {
     const { signUp } = useContext(AuthContext);
@@ -72,86 +66,78 @@ export const Register: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <Wallpaper
-                source={require("../../../assets/Background/background.jpg")}
-            >
-                <ViewOpacity>
-                    <ViewLogo>
-                        <Logo_name_white scale={3} />
-                    </ViewLogo>
+            <Scroll showsVerticalScrollIndicator={false}>
+                <Margin pixels={16} />
 
-                    <Scroll showsVerticalScrollIndicator={false}>
-                        <InputControl
-                            iconName="person"
-                            placeholder="Nome completo"
-                            autoCapitalize="words"
-                            control={control}
-                            name="name"
-                            errors={
-                                errors.name && (errors.name?.message as string)
-                            }
-                        />
+                <Title>Crie sua conta</Title>
 
-                        <InputControl
-                            iconName="mail"
-                            placeholder="E-mail"
-                            keyboardType="email-address"
-                            autoCapitalize="none"
-                            control={control}
-                            name="email"
-                            errors={
-                                errors.email &&
-                                (errors.email?.message as string)
-                            }
-                        />
+                <Margin pixels={24} />
 
-                        <InputControl
-                            iconName="card"
-                            placeholder="CPF"
-                            keyboardType="numeric"
-                            maxLength={11}
-                            control={control}
-                            name="cpf"
-                            errors={
-                                errors.cpf && (errors.cpf?.message as string)
-                            }
-                        />
+                <InputControl
+                    iconName="person"
+                    placeholder="Nome completo"
+                    autoCapitalize="words"
+                    control={control}
+                    name="name"
+                    errors={errors.name && (errors.name?.message as string)}
+                />
 
-                        <InputPasswordControl
-                            placeholder="Senha"
-                            autoCapitalize="none"
-                            control={control}
-                            name="password"
-                            errors={
-                                errors.password &&
-                                (errors.password?.message as string)
-                            }
-                        />
+                <InputControl
+                    iconName="mail"
+                    placeholder="E-mail"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    control={control}
+                    name="email"
+                    errors={errors.email && (errors.email?.message as string)}
+                />
 
-                        <InputPasswordControl
-                            placeholder="Confirmar senha"
-                            autoCapitalize="none"
-                            control={control}
-                            name="confirmPassword"
-                            errors={
-                                errors.confirmPassword &&
-                                (errors.confirmPassword?.message as string)
-                            }
-                        />
+                <InputControl
+                    iconName="card"
+                    placeholder="CPF"
+                    keyboardType="numeric"
+                    maxLength={11}
+                    control={control}
+                    name="cpf"
+                    errors={errors.cpf && (errors.cpf?.message as string)}
+                />
 
-                        <Margin pixels={32} />
+                <InputPasswordControl
+                    placeholder="Senha"
+                    autoCapitalize="none"
+                    control={control}
+                    name="password"
+                    errors={
+                        errors.password && (errors.password?.message as string)
+                    }
+                />
 
-                        <PrimaryButton
-                            title="CRIAR CONTA"
-                            onPress={handleSubmit(handleRegister)}
-                        />
+                <InputPasswordControl
+                    placeholder="Confirmar senha"
+                    autoCapitalize="none"
+                    control={control}
+                    name="confirmPassword"
+                    errors={
+                        errors.confirmPassword &&
+                        (errors.confirmPassword?.message as string)
+                    }
+                />
 
-                        <Margin pixels={8} />
+                <Margin pixels={12} />
 
-                        <SecondaryButton title="ENTRAR" screen={"Login"} />
-                    </Scroll>
-                </ViewOpacity>
-            </Wallpaper>
+                <PrimaryButton
+                    title="Criar conta"
+                    onPress={handleSubmit(handleRegister)}
+                />
+
+                <Margin pixels={8} />
+
+                <TextNavigation
+                    text="Já possui uma conta?"
+                    textNavigation="Faça o login"
+                    screen="Login"
+                />
+            </Scroll>
             <LoadingModal />
         </Container>
     );

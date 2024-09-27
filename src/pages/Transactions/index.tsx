@@ -1,7 +1,8 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useNavigation } from "@react-navigation/native";
 import React, { useContext, useEffect, useState } from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
+import { Margin } from "../../components/Margin";
 import { TransactionsList } from "../../components/TransactionsList";
 import { AuthContext } from "../../contexts/auth";
 import { getBalance } from "../../functions/getBalance";
@@ -72,23 +73,27 @@ export const Transacoes: React.FunctionComponent = () => {
                     }}
                 >
                     <TitleTab>Transações</TitleTab>
-                    <IconTab name="calendar" onPress={openDate} />
+                    <IconTab name="options-outline" onPress={openDate} />
                 </View>
             </HeaderTab>
 
-            <Box>
-                <TextBalance>Saldo atual:</TextBalance>
+            <Body>
+                <Margin pixels={16} />
+                <TextBalance>Saldo atual</TextBalance>
                 <TextValue>
                     R$
                     {balance.toLocaleString("pt-BR", {
                         minimumFractionDigits: 2,
                     })}
                 </TextValue>
-            </Box>
 
-            <Body>
-                <ContainerList style={{ elevation: 4 }}>
-                    <TextDate>{date.toLocaleDateString()}</TextDate>
+                <Margin pixels={16} />
+
+                <ContainerList>
+                    <Box>
+                        <TextDate>{date.toLocaleDateString()}</TextDate>
+                        <Text>Resultado: recentes</Text>
+                    </Box>
 
                     {loading ? (
                         <LoadingList
@@ -103,7 +108,7 @@ export const Transacoes: React.FunctionComponent = () => {
                             )}
                             ListEmptyComponent={
                                 <NotFound>
-                                    Nenhuma transação nesta data.
+                                    Nenhuma transação realizada nesta data.
                                 </NotFound>
                             }
                         />

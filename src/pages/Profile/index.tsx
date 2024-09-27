@@ -5,19 +5,13 @@ import { Keyboard } from "react-native";
 import * as yup from "yup";
 import { HeaderDrawer_2 } from "../../components/HeaderDrawer";
 import { InputControl } from "../../components/InputControl";
+import { Margin } from "../../components/Margin";
 import { ModalPasswordConfirm } from "../../components/ModalPasswordConfirm";
+import { PrimaryButton, SecondaryButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
 import { getUpdateProfile } from "../../functions/getUptadeProfile";
-import theme from "../../global/styles/theme";
 import { IFormEditProfile } from "../../interface";
-import {
-    Container,
-    PrimaryButton,
-    Scroll,
-    SecondaryButton,
-    TextButton,
-    Title,
-} from "./styles";
+import { Container, Scroll, Title } from "./styles";
 
 export const Profile: React.FunctionComponent = () => {
     const { user, setUser, isChecked, setLoading } = useContext(AuthContext);
@@ -67,19 +61,19 @@ export const Profile: React.FunctionComponent = () => {
 
     const handleFunction = async (password: string) => {
         setLoading(true);
-        await getUpdateProfile(data, user, setUser, isChecked, password).then(
-            () => {
-                setLoading(false);
-            },
-        );
+        await getUpdateProfile(data, user, setUser, isChecked, password);
     };
 
     return (
         <Container>
-            <HeaderDrawer_2 title="Dados do usuário" />
+            <HeaderDrawer_2 title="Perfil" />
 
             <Scroll>
-                <Title>Clique sobre os dados para editá-los.</Title>
+                <Margin pixels={32} />
+
+                <Title>Clique sobre o campo para alterar o valor.</Title>
+
+                <Margin pixels={24} />
 
                 <InputControl
                     control={control}
@@ -110,40 +104,30 @@ export const Profile: React.FunctionComponent = () => {
                     errors={errors.cpf && (errors.cpf?.message as string)}
                 />
 
+                <Margin pixels={12} />
+
                 <PrimaryButton
-                    disabled={!isDirty}
                     onPress={handleSubmit(updateData)}
-                    activeOpacity={0.8}
-                >
-                    <TextButton
-                        style={{
-                            color: isDirty
-                                ? theme.colors.white
-                                : theme.colors.gray,
-                        }}
-                    >
-                        SALVAR
-                    </TextButton>
-                </PrimaryButton>
+                    title="Salvar"
+                    disabled={!isDirty}
+                    style={{
+                        opacity: !isDirty ? 0.4 : 1,
+                    }}
+                />
+
+                <Margin pixels={8} />
 
                 <SecondaryButton
-                    disabled={!isDirty}
-                    activeOpacity={0.6}
                     onPress={() => {
                         reset();
                         Keyboard.dismiss();
                     }}
-                >
-                    <TextButton
-                        style={{
-                            color: !isDirty
-                                ? theme.colors.gray
-                                : theme.colors.black,
-                        }}
-                    >
-                        CANCELAR
-                    </TextButton>
-                </SecondaryButton>
+                    title="Cancelar"
+                    disabled={!isDirty}
+                    style={{
+                        opacity: !isDirty ? 0.4 : 1,
+                    }}
+                />
             </Scroll>
 
             <ModalPasswordConfirm

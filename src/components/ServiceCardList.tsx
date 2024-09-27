@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import { ServiceCard } from "./ServiceCard";
+import theme from "../global/styles/theme";
 
 export const ServiceCardList: React.FunctionComponent = () => {
     return (
@@ -60,7 +61,11 @@ export const ServiceCardList: React.FunctionComponent = () => {
     );
 };
 
-const Container = styled.View``;
+const Container = styled.View`
+    background-color: ${theme.colors.white};
+    padding: 10px;
+    border-radius: 10px;
+`;
 
 const BoxServices = styled.View`
     flex-direction: row;

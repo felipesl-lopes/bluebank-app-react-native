@@ -1,14 +1,17 @@
 import React from "react";
 import { ScrollView } from "react-native";
 import { OtherServices } from "./OtherServices";
+import theme from "../global/styles/theme";
+import { Margin } from "./Margin";
 
 export const OtherServicesList: React.FunctionComponent = () => {
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
             style={{
-                marginBottom: 10,
-                paddingBottom: 10,
+                padding: 10,
+                backgroundColor: theme.colors.white,
+                borderRadius: 10,
             }}
         >
             <OtherServices
@@ -17,11 +20,15 @@ export const OtherServicesList: React.FunctionComponent = () => {
                 screen="Negociacao"
             />
 
+            <Margin pixels={10} />
+
             <OtherServices
                 title="Precisa de ajuda?"
                 description="Entre em contato conosco e tire as suas dúvidas."
                 screen="Ajuda"
             />
+
+            <Margin pixels={10} />
 
             <OtherServices
                 title="Contrato"

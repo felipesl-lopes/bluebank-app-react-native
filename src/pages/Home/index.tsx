@@ -10,7 +10,7 @@ import { getHaveBiometrics } from "../../functions/getHaveBiometrics";
 import { getSuportedBiometry } from "../../functions/getSuportedBiometry";
 import { handleSliders } from "../../functions/handleSliders";
 import { ISliders } from "../../interface";
-import { Background, Body, Container, Scroll } from "./styles";
+import { Container, Scroll } from "./styles";
 
 export const Home: React.FunctionComponent = () => {
     const [isBiometry, setIsBiometry] = useState<boolean>(false);
@@ -39,41 +39,36 @@ export const Home: React.FunctionComponent = () => {
         <Container>
             <HeaderDrawer />
 
-            <Background
-                source={require("../../assets/Background/background.jpg")}
-            >
-                <Scroll>
-                    <Margin pixels={24} />
+            <Scroll showsVerticalScrollIndicator={false}>
+                <Margin pixels={20} />
 
-                    <AccountDashboard />
+                <AccountDashboard />
 
-                    <Margin pixels={40} />
+                <Margin pixels={20} />
 
-                    <Body>
-                        <ServiceCardList />
+                <ServiceCardList />
 
-                        <Margin pixels={50} />
+                <Margin pixels={20} />
 
-                        {!suportedBiometry ||
-                            (!isBiometry && (
-                                <View>
-                                    <BiometricsRegistrationService />
-                                    <Margin pixels={50} />
-                                </View>
-                            ))}
+                {!suportedBiometry ||
+                    (!isBiometry && (
+                        <View>
+                            <BiometricsRegistrationService />
+                            <Margin pixels={20} />
+                        </View>
+                    ))}
 
-                        {/* Existe um erro na biblioteca, no módulo com View.proptypes.style. Verificar depois se o erro foi corrigido. */}
-                        {/* {sliders && (
+                {/* Existe um erro na biblioteca, no módulo com View.proptypes.style. Verificar depois se o erro foi corrigido. */}
+                {/* {sliders && (
                             <View>
                                 <CarouselSliders sliders={sliders} />
                                 <Margin pixels={20} />
                             </View>
                         )} */}
 
-                        <OtherServicesList />
-                    </Body>
-                </Scroll>
-            </Background>
+                <OtherServicesList />
+                <Margin pixels={20} />
+            </Scroll>
         </Container>
     );
 };

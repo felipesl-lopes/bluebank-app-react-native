@@ -37,10 +37,8 @@ export const TabRoutes: React.FunctionComponent = () => {
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
-                tabBarInactiveBackgroundColor: theme.colors.primary,
-                tabBarActiveBackgroundColor: theme.colors.primary,
-                tabBarActiveTintColor: theme.colors.accent,
-                tabBarInactiveTintColor: theme.colors.white,
+                tabBarActiveTintColor: theme.colors.primary,
+                tabBarInactiveTintColor: "#909090",
                 tabBarStyle: { borderTopWidth: 0 },
                 tabBarLabelStyle: { fontSize: 11 },
             }}

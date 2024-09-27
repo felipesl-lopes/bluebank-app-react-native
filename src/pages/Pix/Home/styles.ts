@@ -5,7 +5,7 @@ import { IUser } from "../../../interface";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${theme.colors.background};
+    background-color: ${theme.colors.background2};
 `;
 
 export const Contacts = styled.Text`

@@ -1,15 +1,18 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import * as yup from "yup";
 import { InputControl } from "../../../components/InputControl";
 import { LoadingScreen } from "../../../components/LoadingScreen";
-import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
+import { Margin } from "../../../components/Margin";
+import { PrimaryButton } from "../../../components/SendButton";
+import { TextNavigation } from "../../../components/TextNavigation";
 import { AuthContext } from "../../../contexts/auth";
 import { IFormResetPassword } from "../../../interface";
-import { Container, Scroll, ViewOpacity, Wallpaper } from "../Login/styles";
-import { Message, Text } from "./styles";
+import { Container, Scroll, Title } from "../Login/styles";
+import { Text } from "./styles";
 
 export const ResetPassword: React.FunctionComponent = () => {
     const { resetPassword } = useContext(AuthContext);
@@ -45,18 +48,50 @@ export const ResetPassword: React.FunctionComponent = () => {
         reset();
     };
 
+    const cleanMessage = () => {
+        setMessage("");
+    };
+
     if (!isReady) {
         return <LoadingScreen />;
     }
 
     return (
         <Container>
-            <Wallpaper
-                source={require("../../../assets/Background/background.jpg")}
-            >
-                <ViewOpacity>
-                    <Scroll>
-                        <Text>Digite o e-mail cadastrado:</Text>
+            <Scroll showsVerticalScrollIndicator={false}>
+                <Margin pixels={16} />
+
+                <Title>Recuperação de senha</Title>
+
+                <Margin pixels={24} />
+
+                {message ? (
+                    <View style={{ alignItems: "center" }}>
+                        <Ionicons name="mail-unread-outline" size={44} />
+                        <Margin pixels={4} />
+                        <Text>
+                            Um e-mail foi enviado para{" "}
+                            <Text style={{ fontWeight: "bold", color: "#000" }}>
+                                {message}
+                            </Text>
+                            .
+                        </Text>
+                        <Margin pixels={8} />
+                        <Text>
+                            Caso não receba o e-mail em alguns minutos, não se
+                            esqueça de checar a pasta de spam ou lixo
+                            eletrônico.
+                        </Text>
+                        <Margin pixels={8} />
+                    </View>
+                ) : (
+                    <View>
+                        <Text>
+                            Digite o e-mail da sua conta e enviaremos um link
+                            para você redefinir sua senha.
+                        </Text>
+                        <Margin pixels={24} />
+
                         <InputControl
                             control={control}
                             iconName="mail"
@@ -69,22 +104,26 @@ export const ResetPassword: React.FunctionComponent = () => {
                             keyboardType="email-address"
                             autoCapitalize="none"
                         />
+                    </View>
+                )}
 
-                        {message && (
-                            <Message style={{ elevation: 5 }}>
-                                {message}
-                            </Message>
-                        )}
+                <Margin pixels={12} />
 
-                        <PrimaryButton
-                            onPress={handleSubmit(handlePassword)}
-                            title="REDEFINIR SENHA"
-                        />
+                <PrimaryButton
+                    onPress={
+                        message ? cleanMessage : handleSubmit(handlePassword)
+                    }
+                    title={message ? "Redefinir novamente" : "Redefinir senha"}
+                />
 
-                        <SecondaryButton screen="Login" title="ENTRAR" />
-                    </Scroll>
-                </ViewOpacity>
-            </Wallpaper>
+                <Margin pixels={8} />
+
+                <TextNavigation
+                    text="Clique aqui para"
+                    textNavigation="fazer login"
+                    screen="Login"
+                />
+            </Scroll>
         </Container>
     );
 };

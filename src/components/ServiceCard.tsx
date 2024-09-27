@@ -19,34 +19,34 @@ export const ServiceCard: React.FunctionComponent<IProps> = ({
     const { navigate } = useNavigation<IScreenNavigation>();
 
     return (
-        <CardButtons onPress={() => navigate(screen)} activeOpacity={0.8}>
-            <ViewIcon style={{ elevation: 4 }}>
-                <IconCard source={source} resizeMode="contain" />
-            </ViewIcon>
-            <NameCard>{nameCard}</NameCard>
+        <CardButtons
+            style={{ elevation: 1 }}
+            onPress={() => navigate(screen)}
+            activeOpacity={0.8}
+        >
+            <IconCard source={source} resizeMode="contain" />
+            <NameCard numberOfLines={1}>{nameCard}</NameCard>
         </CardButtons>
     );
 };
 
 const CardButtons = styled.TouchableOpacity`
-    width: 25%;
+    width: 22%;
     align-items: center;
-`;
-
-const ViewIcon = styled.View`
-    background-color: ${theme.colors.white};
-    padding: 10px;
-    border-radius: 30px;
+    background-color: ${theme.colors.background2};
+    margin: 2px;
+    padding: 6px;
+    border-radius: 8px;
+    justify-content: center;
 `;
 
 const IconCard = styled.Image`
-    height: 30px;
-    width: 30px;
+    height: 32px;
+    width: 32px;
 `;
 
 const NameCard = styled.Text`
     text-align: center;
     margin-top: 6px;
-    color: ${theme.colors.white};
     font-size: 13px;
 `;

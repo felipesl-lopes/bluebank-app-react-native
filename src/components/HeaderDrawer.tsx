@@ -62,8 +62,7 @@ const Icon = styled(Ionicons)`
 `;
 
 const Title = styled.Text`
-    font-size: 20px;
+    font-size: 18px;
     color: ${theme.colors.white};
-    font-weight: bold;
     margin-left: 30px;
 `;

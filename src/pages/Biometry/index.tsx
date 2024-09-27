@@ -3,9 +3,11 @@ import React, { useContext, useState } from "react";
 import { Alert } from "react-native";
 import ReactNativeBiometrics from "react-native-biometrics";
 import * as Keychain from "react-native-keychain";
+import { Margin } from "../../components/Margin";
 import { ModalPasswordConfirm } from "../../components/ModalPasswordConfirm";
+import { PrimaryButton, SecondaryButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
-import { Button, Container, Img, Text, TextButton, Title } from "./styles";
+import { Container, Img, Scroll, Text, Title } from "./styles";
 
 export const Biometry: React.FunctionComponent = () => {
     const rnBiometrics = new ReactNativeBiometrics();
@@ -16,7 +18,11 @@ export const Biometry: React.FunctionComponent = () => {
 
     const getRegisterBiometry = async () => {
         await rnBiometrics
-            .simplePrompt({ promptMessage: "   Confirmar impressão digital" })
+            .simplePrompt({
+                promptMessage:
+                    "Confirme sua impressão digital para realizar o cadastro",
+                cancelButtonText: "Cancelar",
+            })
             .then(async resultObject => {
                 const { success } = resultObject;
                 if (success) {
@@ -42,27 +48,38 @@ export const Biometry: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <Img source={require("../../assets/biometry.png")} />
-            <Title>CADASTRAR BIOMETRIA</Title>
-            <Text>Use sua digital para um acesso mais rápido e seguro.</Text>
+            <Scroll>
+                <Margin pixels={32} />
 
-            <Button onPress={getRegisterBiometry} activeOpacity={0.7}>
-                <TextButton>CONTINUAR</TextButton>
-            </Button>
+                <Title>Cadastre sua Biometria</Title>
 
-            <Button
-                onPress={() => goBack()}
-                activeOpacity={0.7}
-                style={{ backgroundColor: "transparent" }}
-            >
-                <TextButton>VOLTAR</TextButton>
-            </Button>
+                <Margin pixels={24} />
 
-            <ModalPasswordConfirm
-                setShow={setShow}
-                show={show}
-                handleFunction={handleFunction}
-            />
+                <Img source={require("../../assets/biometry.png")} />
+
+                <Margin pixels={36} />
+
+                <Text>
+                    Use sua digital para um acesso mais rápido e seguro.
+                </Text>
+
+                <Margin pixels={32} />
+
+                <PrimaryButton
+                    title="Continuar"
+                    onPress={getRegisterBiometry}
+                />
+
+                <Margin pixels={8} />
+
+                <SecondaryButton title="Voltar" onPress={() => goBack()} />
+
+                <ModalPasswordConfirm
+                    setShow={setShow}
+                    show={show}
+                    handleFunction={handleFunction}
+                />
+            </Scroll>
         </Container>
     );
 };

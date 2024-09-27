@@ -1,7 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View } from "react-native";
+import { Text } from "react-native";
 import styled from "styled-components/native";
+import theme from "../global/styles/theme";
 import { ITransactions } from "../interface";
 
 interface IProps {
@@ -17,56 +18,51 @@ export const TransactionsList: React.FunctionComponent<IProps> = ({ data }) => {
 
     return (
         <Container
+            style={{ elevation: 1 }}
             activeOpacity={0.7}
             onPress={() => navigate("TransactionsDetails", data)}
         >
-            <View>
-                <BoxType>
-                    <Type>{data.type}</Type>
+            <Box>
+                <TextStrong>{data.type}</TextStrong>
 
-                    <Balance>
-                        R$
-                        {data.balance.toLocaleString("pt-BR", {
-                            minimumFractionDigits: 2,
-                        })}
-                    </Balance>
-                </BoxType>
-                <Value
-                    style={{
-                        color: data.debit ? "#e70000" : "#009900",
-                    }}
-                >
+                <Text style={{ fontSize: 16 }}>
                     R$
+                    {data.balance.toLocaleString("pt-BR", {
+                        minimumFractionDigits: 2,
+                    })}
+                </Text>
+            </Box>
+
+            <Box>
+                <Text>{data.date.slice(0, 10)}</Text>
+                <TextStrong
+                    style={{ color: data.debit ? "#ac0000" : "#00ac00" }}
+                >
+                    {data.debit ? "-" : "+"}R$
                     {data.value.toLocaleString("pt-BR", {
                         minimumFractionDigits: 2,
                     })}
-                </Value>
-            </View>
+                </TextStrong>
+            </Box>
         </Container>
     );
 };
 
 const Container = styled.TouchableOpacity`
     flex: 1;
-    margin: 10px 10px 0;
-    padding: 5px;
-    border-top-width: 1px;
+    margin: 0 10px 10px;
+    padding: 10px;
+    background-color: ${theme.colors.background2};
+    border-radius: 8px;
 `;
 
-const BoxType = styled.View`
+const TextStrong = styled.Text`
+    font-size: 17px;
+    font-weight: bold;
+    color: ${theme.colors.black};
+`;
+
+const Box = styled.View`
     flex-direction: row;
     justify-content: space-between;
-`;
-
-const Type = styled.Text`
-    font-weight: 500;
-    font-size: 16px;
-`;
-
-const Value = styled.Text``;
-
-const Balance = styled.Text`
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
 `;

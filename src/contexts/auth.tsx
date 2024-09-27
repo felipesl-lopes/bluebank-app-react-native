@@ -140,11 +140,7 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
         await auth()
             .sendPasswordResetEmail(data.email)
             .then(() => {
-                Alert.alert(
-                    "E-mail enviado",
-                    "Verifique sua caixa de entrada e caixa de spam.",
-                );
-                setMessage(`E-mail enviado para: \n ${data.email}`);
+                setMessage(data.email);
             })
             .catch(() => {
                 Alert.alert(
@@ -160,29 +156,33 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({ children }) => {
      * Function to log out.
      */
     const logOut = async () => {
-        Alert.alert("Sair da conta", "Tem certeza que deseja desconectar?", [
-            {
-                text: "Cancelar",
-                style: "cancel",
-            },
-            {
-                text: "Sair",
-                onPress: async () => {
-                    setLoading(true);
-                    await auth()
-                        .signOut()
-                        .then(async () => {
-                            await removeItem(setUser);
-                        })
-                        .catch(() => {
-                            Alert.alert("Erro ao sair.");
-                        })
-                        .finally(() => {
-                            setLoading(false);
-                        });
+        Alert.alert(
+            "Sair da conta",
+            "Deseja sair? Você precisará fazer login novamente.",
+            [
+                {
+                    text: "Cancelar",
+                    style: "cancel",
                 },
-            },
-        ]);
+                {
+                    text: "Sair",
+                    onPress: async () => {
+                        setLoading(true);
+                        await auth()
+                            .signOut()
+                            .then(async () => {
+                                await removeItem(setUser);
+                            })
+                            .catch(() => {
+                                Alert.alert("Erro ao sair.");
+                            })
+                            .finally(() => {
+                                setLoading(false);
+                            });
+                    },
+                },
+            ],
+        );
     };
 
     return (

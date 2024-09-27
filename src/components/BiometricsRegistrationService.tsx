@@ -11,31 +11,62 @@ export const BiometricsRegistrationService: React.FunctionComponent = () => {
         <Container
             onPress={() => navigate("Biometry")}
             activeOpacity={0.8}
-            style={{ elevation: 10 }}
+            style={{ elevation: 2 }}
         >
-            <Title>Cadastrar biometria</Title>
-            <Image source={require("../assets/IconsService/biometric.png")} />
+            <Background
+                source={require("../assets/background/background-app/backgroun-biometry.png")}
+            >
+                <Overlay>
+                    <ContainerText>
+                        <Title>Cadastre sua Biometria</Title>
+                        <Text>
+                            Facilite o acesso e aumente a segurança do seu app.
+                        </Text>
+                    </ContainerText>
+                    <Image source={require("../assets/biome.png")} />
+                </Overlay>
+            </Background>
         </Container>
     );
 };
 
 const Container = styled.TouchableOpacity`
-    background-color: ${theme.colors.white};
-    align-self: center;
-    align-items: center;
-    padding: 24px 10px;
-    border-radius: 30px;
-    width: 30%;
+    border-radius: 10px;
+    margin: 0 10px;
+    overflow: hidden;
+`;
+
+const Background = styled.ImageBackground`
+    flex: 1;
+    border-radius: 10px;
+`;
+
+const Overlay = styled.View`
+    background-color: rgba(102, 163, 255, 0.6);
+    flex: 1;
+    flex-direction: row;
+    padding: 10px 20px;
+    border-radius: 10px;
+`;
+
+const ContainerText = styled.View`
+    flex: 1;
+    margin-right: 12px;
 `;
 
 const Title = styled.Text`
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
-    margin-bottom: 10px;
-    text-align: center;
+    margin-bottom: 2px;
+    color: ${theme.colors.accent};
+`;
+
+const Text = styled.Text`
+    color: ${theme.colors.background2};
+    font-size: 15px;
 `;
 
 const Image = styled.Image`
-    width: 50px;
-    height: 50px;
+    width: 68px;
+    height: 68px;
 `;

@@ -1,64 +1,40 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { TouchableOpacityProps } from "react-native";
 import styled from "styled-components/native";
 import theme from "../global/styles/theme";
-import { IScreenNavigation } from "../interface";
 
-interface IPropsPrimaryButton extends TouchableOpacityProps {
+interface IPropsButton extends TouchableOpacityProps {
     title: string;
     onPress: () => void;
 }
 
-export const PrimaryButton: React.FunctionComponent<IPropsPrimaryButton> = ({
+export const PrimaryButton: React.FunctionComponent<IPropsButton> = ({
     title,
     onPress,
     ...otherProps
 }) => {
     return (
-        <Button
-            onPress={onPress}
-            activeOpacity={0.7}
-            {...otherProps}
-            style={{
-                elevation: 4,
-            }}
-        >
+        <ButtonPrimary onPress={onPress} activeOpacity={0.7} {...otherProps}>
             <TextButton>{title}</TextButton>
-        </Button>
+        </ButtonPrimary>
     );
 };
 
-interface IPropsSecondaryButton extends TouchableOpacityProps {
-    title: string;
-    screen: string;
-}
-
-export const SecondaryButton: React.FunctionComponent<
-    IPropsSecondaryButton
-> = ({ title, screen, ...otherProps }) => {
-    const { navigate } = useNavigation<IScreenNavigation>();
-
+export const SecondaryButton: React.FunctionComponent<IPropsButton> = ({
+    title,
+    onPress,
+    ...otherProps
+}) => {
     return (
-        <Button
-            onPress={() => navigate(screen)}
-            activeOpacity={0.7}
-            style={{
-                elevation: 4,
-                backgroundColor: theme.colors.background,
-                borderWidth: 1,
-                borderColor: theme.colors.primary,
-            }}
-            {...otherProps}
-        >
+        <ButtonSecundary onPress={onPress} activeOpacity={0.7} {...otherProps}>
             <TextButton style={{ color: theme.colors.primary }}>
                 {title}
             </TextButton>
-        </Button>
+        </ButtonSecundary>
     );
 };
 
-const Button = styled.TouchableOpacity`
+const ButtonPrimary = styled.TouchableOpacity`
     background-color: ${theme.colors.primary};
     border-radius: 8px;
     height: 48px;
@@ -67,9 +43,19 @@ const Button = styled.TouchableOpacity`
     margin-bottom: 10px;
 `;
 
+const ButtonSecundary = styled.TouchableOpacity`
+    border-radius: 8px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border-width: 2px;
+    border-color: ${theme.colors.primary};
+`;
+
 const TextButton = styled.Text`
     font-weight: 600;
     color: ${theme.colors.white};
     text-align: center;
-    font-size: 15px;
+    font-size: 16px;
 `;

@@ -20,7 +20,6 @@ interface IPropsInputPasswordControl<T extends FieldValues>
 }
 
 export const InputControl = <T extends FieldValues>({
-    iconName,
     control,
     name,
     errors,
@@ -28,8 +27,7 @@ export const InputControl = <T extends FieldValues>({
 }: IPropsInputControl<T>) => {
     return (
         <Container>
-            <ViewInput>
-                <IconType name={iconName} />
+            <ViewInput style={{ borderColor: errors && theme.colors.red }}>
                 <Controller
                     control={control}
                     name={name}
@@ -61,8 +59,7 @@ export const InputPasswordControl = <T extends FieldValues>({
 
     return (
         <Container>
-            <ViewInput>
-                <IconType name="lock-closed" />
+            <ViewInput style={{ borderColor: errors && theme.colors.red }}>
                 <Controller
                     control={control}
                     name={name}
@@ -86,29 +83,24 @@ export const InputPasswordControl = <T extends FieldValues>({
 };
 
 const Container = styled.View`
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 `;
 
 const ViewInput = styled.View`
     flex-direction: row;
     align-items: center;
-    border-bottom-width: 2px;
     padding: 2px;
-    margin-bottom: 22px;
-    border-color: ${theme.colors.text};
-    border-color: ${theme.colors.primary};
-`;
-
-const IconType = styled(Ionicon)`
-    font-size: 20px;
-    color: ${theme.colors.primary};
+    margin-bottom: 20px;
+    border-width: 2px;
+    border-radius: 8px;
 `;
 
 const Input = styled.TextInput`
-    font-size: 17px;
+    font-size: 16px;
     padding: 2px;
-    margin: 0 10px;
+    margin: 0 4px;
     flex: 1;
+    height: 44px;
 `;
 
 const IconEye = styled(Ionicon)`
@@ -118,7 +110,7 @@ const IconEye = styled(Ionicon)`
 
 const TextError = styled.Text`
     position: absolute;
-    margin-left: 10px;
+    margin-left: 4px;
     bottom: 0;
     color: ${theme.colors.red};
 `;

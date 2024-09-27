@@ -4,14 +4,24 @@ import theme from "../global/styles/theme";
 
 export const LoadingScreen: React.FunctionComponent = () => {
     return (
-        <Container
-            source={require("../assets/Logo/splashscreen.png")}
-            resizeMode="contain"
-        ></Container>
+        <Container>
+            <Logo
+                source={require("../assets/Logo/logo_name-blue.png")}
+                resizeMode="contain"
+            />
+        </Container>
     );
 };
 
-const Container = styled.ImageBackground`
+const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${theme.colors.primary};
+    background-color: ${theme.colors.background2};
+    align-items: center;
+    justify-content: center;
+`;
+
+const Logo = styled.Image`
+    width: 50%;
+    height: auto;
+    aspect-ratio: 3;
 `;

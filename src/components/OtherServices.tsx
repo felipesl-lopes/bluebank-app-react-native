@@ -19,7 +19,7 @@ export const OtherServices: React.FunctionComponent<IProps> = ({
 
     return (
         <CardButton
-            style={{ elevation: 5 }}
+            style={{ elevation: 1 }}
             activeOpacity={0.8}
             onPress={() => navigate(screen)}
         >
@@ -30,20 +30,19 @@ export const OtherServices: React.FunctionComponent<IProps> = ({
 };
 
 const CardButton = styled.TouchableOpacity`
-    background-color: ${theme.colors.white};
+    background-color: ${theme.colors.background2};
     border-radius: 10px;
-    padding: 6px 10px;
-    margin-bottom: 10px;
+    padding: 10px;
+    margin: 0 1px 2px;
 `;
 
 const Title = styled.Text`
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 500;
     margin-right: 6px;
-    color: ${theme.colors.text};
+    color: ${theme.colors.primary};
 `;
 
 const Description = styled.Text`
-    color: ${theme.colors.text};
     font-size: 15px;
 `;

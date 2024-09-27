@@ -1,13 +1,8 @@
 import { useRoute } from "@react-navigation/native";
 import React from "react";
+import { Margin } from "../../../components/Margin";
 import { ITransactions } from "../../../interface";
-import {
-    BoxText,
-    Container,
-    Header,
-    Text,
-    TextBold
-} from "./styles";
+import { Card, Container, Text, TextBold } from "./styles";
 
 export const TransactionsDetails: React.FunctionComponent = () => {
     const route = useRoute();
@@ -16,39 +11,42 @@ export const TransactionsDetails: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <Header>
-                <BoxText>
-                    <TextBold>{data?.type}</TextBold>
-                    <Text>{data?.participant}</Text>
-                </BoxText>
+            <Margin pixels={24} />
 
-                <BoxText>
-                    <Text>Valor</Text>
-                    <TextBold>
-                        {data.debit && "-"}R$
-                        {val.toLocaleString("pt-BR", {
-                            minimumFractionDigits: 2,
-                        })}
-                    </TextBold>
-                </BoxText>
-            </Header>
+            <Text style={{ marginBottom: 8, fontSize: 16 }}>Detalhes:</Text>
 
-            <BoxText>
-                <Text style={{ color: "#000" }}>
-                    Saldo em conta após a transação
-                </Text>
-                <TextBold style={{ color: "#000" }}>
+            <Card>
+                <TextBold>{data?.type}</TextBold>
+                <Text>{data?.participant}</Text>
+
+                <Margin pixels={16} />
+
+                <Text>Valor</Text>
+                <TextBold>
+                    R$
+                    {val.toLocaleString("pt-BR", {
+                        minimumFractionDigits: 2,
+                    })}
+                </TextBold>
+            </Card>
+
+            <Margin pixels={24} />
+
+            <Text style={{ marginBottom: 8, fontSize: 16 }}>Resumo:</Text>
+            <Card>
+                <Text>Saldo em conta após a transação</Text>
+                <TextBold>
                     R$
                     {data.balance.toLocaleString("pt-BR", {
                         minimumFractionDigits: 2,
                     })}
                 </TextBold>
-            </BoxText>
 
-            <BoxText>
-                <Text style={{ color: "#000" }}>Data</Text>
-                <TextBold style={{ color: "#000" }}>{data.date}</TextBold>
-            </BoxText>
+                <Margin pixels={16} />
+
+                <Text>Data</Text>
+                <TextBold>{data.date}</TextBold>
+            </Card>
         </Container>
     );
 };

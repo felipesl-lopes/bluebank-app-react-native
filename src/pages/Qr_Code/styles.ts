@@ -4,29 +4,25 @@ import theme from "../../global/styles/theme";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${({ theme }) => theme.colors.lightBlue};
-`;
-
-export const Body = styled.View`
-    flex: 1;
-    justify-content: space-evenly;
-`;
-
-export const ContainerService = styled.TouchableOpacity`
-    background-color: ${theme.colors.gray};
-    align-items: center;
-    border-radius: 8px;
-    padding: 20px;
-    width: 60%;
-    align-self: center;
-`;
-
-export const Icon = styled(Ionicons)`
-    font-size: 70px;
-    margin-bottom: 10px;
+    background-color: ${theme.colors.background1};
 `;
 
 export const Text = styled.Text`
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
+`;
+
+export const Background = styled.ImageBackground`
+    flex: 1;
+`;
+
+export const Scroll = styled.ScrollView`
+    flex: 1;
+    padding: 0 12px;
+`;
+
+export const Icon = styled(Ionicons)`
+    font-size: 130px;
+    align-self: center;
+    color: black;
 `;

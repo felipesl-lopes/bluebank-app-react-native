@@ -6,15 +6,16 @@ import { View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import ToggleSwitch from "toggle-switch-react-native";
 import * as yup from "yup";
+import { ImageHeader } from "../../../components/ImageHeader";
 import {
     InputControl,
     InputPasswordControl,
 } from "../../../components/InputControl";
 import { LoadingModal } from "../../../components/LoadingModal";
 import { LoadingScreen } from "../../../components/LoadingScreen";
-import { Logo_name_white } from "../../../components/Logo";
 import { Margin } from "../../../components/Margin";
-import { PrimaryButton, SecondaryButton } from "../../../components/SendButton";
+import { PrimaryButton } from "../../../components/SendButton";
+import { TextNavigation } from "../../../components/TextNavigation";
 import { AuthContext } from "../../../contexts/auth";
 import { getAuthWithBiometry } from "../../../functions/getAuthWithBiometry";
 import { getHaveBiometrics } from "../../../functions/getHaveBiometrics";
@@ -33,11 +34,9 @@ import {
     TextCheck,
     TextRecoverPassword,
     TextSeparator,
+    Title,
     ViewCheckBox,
     ViewComponents,
-    ViewLogo,
-    ViewOpacity,
-    Wallpaper,
 } from "./styles";
 
 export const Login: React.FunctionComponent = () => {
@@ -130,108 +129,97 @@ export const Login: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <Wallpaper
-                source={require("../../../assets/Background/background.jpg")}
-            >
-                <ViewOpacity>
-                    <ViewLogo>
-                        <Logo_name_white scale={3} />
-                    </ViewLogo>
+            <ImageHeader />
 
-                    <Scroll showsVerticalScrollIndicator={false}>
-                        <InputControl
-                            iconName="mail"
-                            placeholder="E-mail"
-                            keyboardType="email-address"
-                            autoCapitalize="none"
-                            control={control}
-                            name="email"
-                            errors={
-                                errors.email &&
-                                (errors.email?.message as string)
+            <Scroll showsVerticalScrollIndicator={false}>
+                <Margin pixels={16} />
+
+                <Title>Acesse sua conta</Title>
+
+                <Margin pixels={24} />
+
+                <InputControl
+                    iconName="mail"
+                    placeholder="E-mail"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    control={control}
+                    name="email"
+                    errors={errors.email && (errors.email?.message as string)}
+                />
+
+                <InputPasswordControl
+                    placeholder="Senha"
+                    autoCapitalize="none"
+                    control={control}
+                    name="password"
+                    errors={
+                        errors.password && (errors.password?.message as string)
+                    }
+                />
+
+                <ViewComponents>
+                    <ViewCheckBox>
+                        <TextCheck>Salvar e-mail</TextCheck>
+                        <ToggleSwitch
+                            isOn={isChecked}
+                            onColor={theme.colors.secondary}
+                            offColor={theme.colors.gray}
+                            onToggle={handleToggle}
+                            size="small"
+                        />
+                    </ViewCheckBox>
+
+                    <TextRecoverPassword
+                        onPress={() => navigate("ResetPassword")}
+                    >
+                        Esqueci minha senha
+                    </TextRecoverPassword>
+                </ViewComponents>
+
+                <Margin pixels={20} />
+
+                <PrimaryButton
+                    title="Entrar"
+                    onPress={handleSubmit(handleLogin)}
+                />
+
+                <Margin pixels={4} />
+
+                {suportedBiometrics && haveBiometrics && (
+                    <View>
+                        <ContainerSeparator>
+                            <LineSeparator />
+                            <TextSeparator>OU</TextSeparator>
+                            <LineSeparator />
+                        </ContainerSeparator>
+
+                        <Margin pixels={4} />
+
+                        <ButtonBiometry
+                            style={{ elevation: 4 }}
+                            onPress={() =>
+                                getAuthWithBiometry(setUser, setLoading)
                             }
-                        />
+                            activeOpacity={0.6}
+                        >
+                            <TextBiometry>Entrar com biometria</TextBiometry>
+                            <IconBiometry
+                                source={require("../../../assets/icon-biometric.png")}
+                            />
+                        </ButtonBiometry>
+                    </View>
+                )}
 
-                        <InputPasswordControl
-                            placeholder="Senha"
-                            autoCapitalize="none"
-                            control={control}
-                            name="password"
-                            errors={
-                                errors.password &&
-                                (errors.password?.message as string)
-                            }
-                        />
+                <Margin pixels={8} />
 
-                        <ViewComponents>
-                            <ViewCheckBox>
-                                <TextCheck>Salvar e-mail</TextCheck>
-                                <ToggleSwitch
-                                    isOn={isChecked}
-                                    onColor={theme.colors.secondary}
-                                    offColor={theme.colors.gray}
-                                    onToggle={handleToggle}
-                                    size="small"
-                                />
-                            </ViewCheckBox>
+                <TextNavigation
+                    text="Não possui conta?"
+                    textNavigation="Crie uma conta"
+                    screen="Register"
+                />
+            </Scroll>
 
-                            <TextRecoverPassword
-                                onPress={() => navigate("ResetPassword")}
-                            >
-                                Esqueci minha senha
-                            </TextRecoverPassword>
-                        </ViewComponents>
-
-                        <Margin pixels={40} />
-
-                        <PrimaryButton
-                            title="ENTRAR"
-                            onPress={handleSubmit(handleLogin)}
-                        />
-
-                        <Margin pixels={8} />
-
-                        <SecondaryButton
-                            title="CRIAR CONTA"
-                            screen={"Register"}
-                        />
-
-                        {suportedBiometrics ? (
-                            haveBiometrics ? (
-                                <View>
-                                    <ContainerSeparator>
-                                        <LineSeparator />
-                                        <TextSeparator>OU</TextSeparator>
-                                        <LineSeparator />
-                                    </ContainerSeparator>
-
-                                    <ButtonBiometry
-                                        style={{ elevation: 4 }}
-                                        onPress={() =>
-                                            getAuthWithBiometry(
-                                                setUser,
-                                                setLoading,
-                                            )
-                                        }
-                                        activeOpacity={0.6}
-                                    >
-                                        <TextBiometry>
-                                            Entrar com biometria
-                                        </TextBiometry>
-                                        <IconBiometry
-                                            source={require("../../../assets/biometry.png")}
-                                        />
-                                    </ButtonBiometry>
-                                </View>
-                            ) : (
-                                <View style={{ marginBottom: "10%" }} />
-                            )
-                        ) : (
-                            <View style={{ marginBottom: "10%" }} />
-                        )}
-                    </Scroll>
-                </ViewOpacity>
-            </Wallpaper>
             <LoadingModal />
         </Container>
     );

@@ -3,7 +3,7 @@ import theme from "../../../global/styles/theme";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${theme.colors.background};
+    background-color: ${theme.colors.background2};
 `;
 
 export const Scroll = styled.ScrollView`
