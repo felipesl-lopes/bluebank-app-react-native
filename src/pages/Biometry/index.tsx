@@ -49,28 +49,28 @@ export const Biometry: React.FunctionComponent = () => {
     return (
         <Container>
             <Scroll>
-                <Margin pixels={32} />
+                <Margin size={32} />
 
                 <Title>Cadastre sua Biometria</Title>
 
-                <Margin pixels={24} />
+                <Margin size={24} />
 
                 <Img source={require("../../assets/biometry.png")} />
 
-                <Margin pixels={36} />
+                <Margin size={36} />
 
                 <Text>
                     Use sua digital para um acesso mais rápido e seguro.
                 </Text>
 
-                <Margin pixels={32} />
+                <Margin size={32} />
 
                 <PrimaryButton
                     title="Continuar"
                     onPress={getRegisterBiometry}
                 />
 
-                <Margin pixels={8} />
+                <Margin size={8} />
 
                 <SecondaryButton title="Voltar" onPress={() => goBack()} />
 

@@ -9,7 +9,7 @@ export const ImageHeader: React.FunctionComponent = () => {
             style={{
                 width: screenWidth,
                 height: undefined,
-                aspectRatio: 1.5,
+                aspectRatio: 2,
             }}
             source={require("../assets/background/background-autentication/background.png")}
         />

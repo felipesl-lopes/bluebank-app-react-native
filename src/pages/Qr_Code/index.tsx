@@ -10,26 +10,26 @@ export const Qr_Code: React.FunctionComponent = () => {
             <HeaderDrawer_2 title="QR Code" />
 
             <Scroll>
-                <Margin pixels={32} />
+                <Margin size={32} />
 
                 <Text>
                     Selecione uma das opções abaixo para realizar uma ação com
                     QR Code.
                 </Text>
 
-                <Margin pixels={24} />
+                <Margin size={24} />
 
                 <Icon name="qr-code-sharp" color={undefined} />
 
-                <Margin pixels={36} />
+                <Margin size={36} />
 
                 <PrimaryButton onPress={() => {}} title="Pagar com QR Code" />
 
-                <Margin pixels={8} />
+                <Margin size={8} />
 
                 <SecondaryButton onPress={() => {}} title="Gerar QR Code" />
 
-                <Margin pixels={24} />
+                <Margin size={24} />
 
                 <Text style={{ fontSize: 16 }}>
                     Certifique-se de escanear apenas códigos de fontes

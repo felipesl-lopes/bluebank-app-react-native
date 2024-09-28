@@ -67,11 +67,11 @@ export const Register: React.FunctionComponent = () => {
     return (
         <Container>
             <Scroll showsVerticalScrollIndicator={false}>
-                <Margin pixels={16} />
+                <Margin size={16} />
 
                 <Title>Crie sua conta</Title>
 
-                <Margin pixels={24} />
+                <Margin size={32} />
 
                 <InputControl
                     iconName="person"
@@ -123,14 +123,14 @@ export const Register: React.FunctionComponent = () => {
                     }
                 />
 
-                <Margin pixels={12} />
+                <Margin size={32} />
 
                 <PrimaryButton
                     title="Criar conta"
                     onPress={handleSubmit(handleRegister)}
                 />
 
-                <Margin pixels={8} />
+                <Margin size={10} />
 
                 <TextNavigation
                     text="Já possui uma conta?"

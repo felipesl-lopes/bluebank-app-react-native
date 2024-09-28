@@ -132,11 +132,11 @@ export const Login: React.FunctionComponent = () => {
             <ImageHeader />
 
             <Scroll showsVerticalScrollIndicator={false}>
-                <Margin pixels={16} />
+                <Margin size={16} />
 
                 <Title>Acesse sua conta</Title>
 
-                <Margin pixels={24} />
+                <Margin size={32} />
 
                 <InputControl
                     iconName="mail"
@@ -177,27 +177,25 @@ export const Login: React.FunctionComponent = () => {
                     </TextRecoverPassword>
                 </ViewComponents>
 
-                <Margin pixels={20} />
+                <Margin size={36} />
 
                 <PrimaryButton
                     title="Entrar"
                     onPress={handleSubmit(handleLogin)}
                 />
 
-                <Margin pixels={4} />
-
                 {suportedBiometrics && haveBiometrics && (
                     <View>
+                        <Margin size={20} />
                         <ContainerSeparator>
                             <LineSeparator />
                             <TextSeparator>OU</TextSeparator>
                             <LineSeparator />
                         </ContainerSeparator>
 
-                        <Margin pixels={4} />
+                        <Margin size={28} />
 
                         <ButtonBiometry
-                            style={{ elevation: 4 }}
                             onPress={() =>
                                 getAuthWithBiometry(setUser, setLoading)
                             }
@@ -208,10 +206,11 @@ export const Login: React.FunctionComponent = () => {
                                 source={require("../../../assets/icon-biometric.png")}
                             />
                         </ButtonBiometry>
+                        <Margin size={10} />
                     </View>
                 )}
 
-                <Margin pixels={8} />
+                <Margin size={10} />
 
                 <TextNavigation
                     text="Não possui conta?"

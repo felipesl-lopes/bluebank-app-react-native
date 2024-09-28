@@ -49,7 +49,6 @@ export const TransactionsList: React.FunctionComponent<IProps> = ({ data }) => {
 };
 
 const Container = styled.TouchableOpacity`
-    flex: 1;
     margin: 0 10px 10px;
     padding: 10px;
     background-color: ${theme.colors.background2};

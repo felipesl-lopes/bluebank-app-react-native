@@ -44,7 +44,7 @@ export const Body = styled.View`
 export const ContainerList = styled.View`
     margin: 0 30px 30px;
     align-self: center;
-    height: 90%;
+    height: 80%;
     width: 100%;
     border-radius: 10px;
     background-color: ${theme.colors.white};

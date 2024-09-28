@@ -20,7 +20,7 @@ export const OtherServicesList: React.FunctionComponent = () => {
                 screen="Negociacao"
             />
 
-            <Margin pixels={10} />
+            <Margin size={10} />
 
             <OtherServices
                 title="Precisa de ajuda?"
@@ -28,7 +28,7 @@ export const OtherServicesList: React.FunctionComponent = () => {
                 screen="Ajuda"
             />
 
-            <Margin pixels={10} />
+            <Margin size={10} />
 
             <OtherServices
                 title="Contrato"

@@ -69,11 +69,11 @@ export const Profile: React.FunctionComponent = () => {
             <HeaderDrawer_2 title="Perfil" />
 
             <Scroll>
-                <Margin pixels={32} />
+                <Margin size={32} />
 
                 <Title>Clique sobre o campo para alterar o valor.</Title>
 
-                <Margin pixels={24} />
+                <Margin size={24} />
 
                 <InputControl
                     control={control}
@@ -104,7 +104,7 @@ export const Profile: React.FunctionComponent = () => {
                     errors={errors.cpf && (errors.cpf?.message as string)}
                 />
 
-                <Margin pixels={12} />
+                <Margin size={12} />
 
                 <PrimaryButton
                     onPress={handleSubmit(updateData)}
@@ -115,7 +115,7 @@ export const Profile: React.FunctionComponent = () => {
                     }}
                 />
 
-                <Margin pixels={8} />
+                <Margin size={8} />
 
                 <SecondaryButton
                     onPress={() => {

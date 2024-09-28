@@ -11,7 +11,7 @@ export const TransactionsDetails: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <Margin pixels={24} />
+            <Margin size={24} />
 
             <Text style={{ marginBottom: 8, fontSize: 16 }}>Detalhes:</Text>
 
@@ -19,7 +19,7 @@ export const TransactionsDetails: React.FunctionComponent = () => {
                 <TextBold>{data?.type}</TextBold>
                 <Text>{data?.participant}</Text>
 
-                <Margin pixels={16} />
+                <Margin size={16} />
 
                 <Text>Valor</Text>
                 <TextBold>
@@ -30,7 +30,7 @@ export const TransactionsDetails: React.FunctionComponent = () => {
                 </TextBold>
             </Card>
 
-            <Margin pixels={24} />
+            <Margin size={24} />
 
             <Text style={{ marginBottom: 8, fontSize: 16 }}>Resumo:</Text>
             <Card>
@@ -42,7 +42,7 @@ export const TransactionsDetails: React.FunctionComponent = () => {
                     })}
                 </TextBold>
 
-                <Margin pixels={16} />
+                <Margin size={16} />
 
                 <Text>Data</Text>
                 <TextBold>{data.date}</TextBold>

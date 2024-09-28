@@ -93,14 +93,14 @@ export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
 
                     <Title>Confirme sua senha</Title>
 
-                    <Margin pixels={8} />
+                    <Margin size={8} />
 
                     <Text>
                         Para confirmar as alterações de seus dados, por favor,
                         insira sua senha.
                     </Text>
 
-                    <Margin pixels={16} />
+                    <Margin size={16} />
 
                     <InputPasswordControl
                         placeholder="Senha"
@@ -113,7 +113,7 @@ export const ModalPasswordConfirm: React.FunctionComponent<IProps> = ({
                         }
                     />
 
-                    <Margin pixels={12} />
+                    <Margin size={12} />
 
                     <ContainerButtons>
                         <TextButton

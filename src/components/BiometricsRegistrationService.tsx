@@ -1,38 +1,59 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
+import { getHaveBiometrics } from "../functions/getHaveBiometrics";
+import { getSuportedBiometry } from "../functions/getSuportedBiometry";
 import theme from "../global/styles/theme";
 import { IScreenNavigation } from "../interface";
 
 export const BiometricsRegistrationService: React.FunctionComponent = () => {
     const { navigate } = useNavigation<IScreenNavigation>();
 
+    const [isBiometry, setIsBiometry] = useState<boolean>(false);
+    const [suportedBiometry, setSuportedBiometry] = useState<boolean>();
+
+    useEffect(() => {
+        (async () => {
+            await getHaveBiometrics(setIsBiometry);
+        })();
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            await getSuportedBiometry(setSuportedBiometry);
+        })();
+    }, [setSuportedBiometry]);
+
     return (
-        <Container
-            onPress={() => navigate("Biometry")}
-            activeOpacity={0.8}
-            style={{ elevation: 2 }}
-        >
-            <Background
-                source={require("../assets/background/background-app/backgroun-biometry.png")}
+        !suportedBiometry ||
+        (!isBiometry && (
+            <Container
+                onPress={() => navigate("Biometry")}
+                activeOpacity={0.8}
+                style={{ elevation: 2 }}
             >
-                <Overlay>
-                    <ContainerText>
-                        <Title>Cadastre sua Biometria</Title>
-                        <Text>
-                            Facilite o acesso e aumente a segurança do seu app.
-                        </Text>
-                    </ContainerText>
-                    <Image source={require("../assets/biome.png")} />
-                </Overlay>
-            </Background>
-        </Container>
+                <Background
+                    source={require("../assets/background/background-app/backgroun-biometry.png")}
+                >
+                    <Overlay>
+                        <ContainerText>
+                            <Title>Cadastre sua Biometria</Title>
+                            <Text>
+                                Facilite o acesso e aumente a segurança do seu
+                                app.
+                            </Text>
+                        </ContainerText>
+                        <Image source={require("../assets/biome.png")} />
+                    </Overlay>
+                </Background>
+            </Container>
+        ))
     );
 };
 
 const Container = styled.TouchableOpacity`
     border-radius: 10px;
-    margin: 0 10px;
+    margin: 0 10px 20px;
     overflow: hidden;
 `;
 

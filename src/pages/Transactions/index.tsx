@@ -73,12 +73,12 @@ export const Transacoes: React.FunctionComponent = () => {
                     }}
                 >
                     <TitleTab>Transações</TitleTab>
-                    <IconTab name="options-outline" onPress={openDate} />
+                    <IconTab name="calendar" onPress={openDate} />
                 </View>
             </HeaderTab>
 
             <Body>
-                <Margin pixels={16} />
+                <Margin size={16} />
                 <TextBalance>Saldo atual</TextBalance>
                 <TextValue>
                     R$
@@ -87,12 +87,12 @@ export const Transacoes: React.FunctionComponent = () => {
                     })}
                 </TextValue>
 
-                <Margin pixels={16} />
+                <Margin size={16} />
 
                 <ContainerList>
                     <Box>
                         <TextDate>{date.toLocaleDateString()}</TextDate>
-                        <Text>Resultado: recentes</Text>
+                        <Text>Resultados: {transactions.length}</Text>
                     </Box>
 
                     {loading ? (

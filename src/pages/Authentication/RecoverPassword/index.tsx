@@ -59,16 +59,16 @@ export const ResetPassword: React.FunctionComponent = () => {
     return (
         <Container>
             <Scroll showsVerticalScrollIndicator={false}>
-                <Margin pixels={16} />
+                <Margin size={16} />
 
                 <Title>Recuperação de senha</Title>
 
-                <Margin pixels={24} />
+                <Margin size={24} />
 
                 {message ? (
                     <View style={{ alignItems: "center" }}>
                         <Ionicons name="mail-unread-outline" size={44} />
-                        <Margin pixels={4} />
+                        <Margin size={4} />
                         <Text>
                             Um e-mail foi enviado para{" "}
                             <Text style={{ fontWeight: "bold", color: "#000" }}>
@@ -76,13 +76,13 @@ export const ResetPassword: React.FunctionComponent = () => {
                             </Text>
                             .
                         </Text>
-                        <Margin pixels={8} />
+                        <Margin size={8} />
                         <Text>
                             Caso não receba o e-mail em alguns minutos, não se
                             esqueça de checar a pasta de spam ou lixo
                             eletrônico.
                         </Text>
-                        <Margin pixels={8} />
+                        <Margin size={8} />
                     </View>
                 ) : (
                     <View>
@@ -90,7 +90,7 @@ export const ResetPassword: React.FunctionComponent = () => {
                             Digite o e-mail da sua conta e enviaremos um link
                             para você redefinir sua senha.
                         </Text>
-                        <Margin pixels={24} />
+                        <Margin size={24} />
 
                         <InputControl
                             control={control}
@@ -107,7 +107,7 @@ export const ResetPassword: React.FunctionComponent = () => {
                     </View>
                 )}
 
-                <Margin pixels={12} />
+                <Margin size={32} />
 
                 <PrimaryButton
                     onPress={
@@ -116,7 +116,7 @@ export const ResetPassword: React.FunctionComponent = () => {
                     title={message ? "Redefinir novamente" : "Redefinir senha"}
                 />
 
-                <Margin pixels={8} />
+                <Margin size={10} />
 
                 <TextNavigation
                     text="Clique aqui para"

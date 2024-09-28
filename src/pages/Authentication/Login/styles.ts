@@ -8,9 +8,9 @@ export const Container = styled.SafeAreaView`
 
 export const Title = styled.Text`
     font-size: 20px;
-    color: ${theme.colors.primary};
+    color: ${theme.colors.black};
     text-align: center;
-    font-weight: bold;
+    font-weight: 500;
 `;
 
 export const Scroll = styled.ScrollView`
@@ -60,10 +60,9 @@ export const ButtonBiometry = styled.TouchableOpacity`
     border-radius: 8px;
     background-color: ${theme.colors.primary};
     flex-direction: row;
-    padding: 5px 10px;
+    padding: 8px 16px;
     align-self: center;
     align-items: center;
-    margin: 10px;
 `;
 
 export const TextBiometry = styled.Text`
@@ -74,8 +73,8 @@ export const TextBiometry = styled.Text`
 `;
 
 export const IconBiometry = styled.Image`
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
 `;
 
 export const TextNewAccount = styled.Text`

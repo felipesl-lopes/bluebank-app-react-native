@@ -32,7 +32,7 @@ export const CustomDrawer: React.FunctionComponent<
 
     return (
         <Container>
-            <Margin pixels={12} />
+            <Margin size={12} />
 
             <HeaderProfile
                 activeOpacity={0.7}
@@ -45,16 +45,16 @@ export const CustomDrawer: React.FunctionComponent<
                 <IconProfile name="person" />
             </HeaderProfile>
 
-            <Margin pixels={12} />
+            <Margin size={12} />
 
             <ContainerLine />
 
             <DrawerContentScrollView showsVerticalScrollIndicator={false}>
-                <Margin pixels={8} />
+                <Margin size={8} />
 
                 <TextType>Operações</TextType>
 
-                <Margin pixels={4} />
+                <Margin size={4} />
 
                 <DrawerServiceCard
                     screen="Transacoes"
@@ -112,11 +112,11 @@ export const CustomDrawer: React.FunctionComponent<
 
                 <ContainerLine />
 
-                <Margin pixels={8} />
+                <Margin size={8} />
 
                 <TextType>Assistência</TextType>
 
-                <Margin pixels={4} />
+                <Margin size={4} />
 
                 <DrawerServiceCard
                     screen="Negociacao"
@@ -138,7 +138,7 @@ export const CustomDrawer: React.FunctionComponent<
 
                 <ContainerLine />
 
-                <Margin pixels={16} />
+                <Margin size={16} />
 
                 <ContainerCash
                     onPress={() => navigate("CashSimulationRoutes")}
@@ -151,7 +151,7 @@ export const CustomDrawer: React.FunctionComponent<
                     <Text style={{ fontSize: 15 }}>Caixa Eletrônico</Text>
                 </ContainerCash>
 
-                <Margin pixels={16} />
+                <Margin size={16} />
             </DrawerContentScrollView>
 
             <ContainerLogout onPress={logOut}>
