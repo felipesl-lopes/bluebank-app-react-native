@@ -1,6 +1,6 @@
 import React from "react";
 import { AccountDashboard } from "../../components/AccountDashboard";
-import { BiometricsRegistrationService } from "../../components/BiometricsRegistrationService";
+import { FingerprintRegistrationService } from "../../components/FingerprintRegistrationService";
 import { HeaderDrawer } from "../../components/HeaderDrawer";
 import { Margin } from "../../components/Margin";
 import { OtherServicesList } from "../../components/OtherServicesList";
@@ -23,9 +23,7 @@ export const Home: React.FunctionComponent = () => {
 
                 <Margin size={20} />
 
-                <BiometricsRegistrationService />
-
-                {/* <CarouselSliders /> */}
+                <FingerprintRegistrationService />
 
                 <OtherServicesList />
                 <Margin size={20} />

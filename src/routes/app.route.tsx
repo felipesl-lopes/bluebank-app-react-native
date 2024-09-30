@@ -6,7 +6,6 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { CustomDrawer } from "../components/CustomDrawer";
 import theme from "../global/styles/theme";
 import { AJuda } from "../pages/Ajuda";
-import { Biometry } from "../pages/Biometry";
 import { Boleto } from "../pages/Boleto";
 import { Cartao } from "../pages/Cartao";
 import { HomeCash } from "../pages/CashSimulation/HomeCash";
@@ -16,14 +15,15 @@ import { Fatura } from "../pages/Fatura";
 import { Home } from "../pages/Home";
 import { Investimento } from "../pages/Investimento";
 import { Negociacao } from "../pages/Negociacao";
+import { Profile } from "../pages/Perfil";
 import { ConfirmPix } from "../pages/Pix/ConfirmPix";
 import { Pix } from "../pages/Pix/Home";
 import { PayPix } from "../pages/Pix/PayPix";
 import { PaymentVoucher } from "../pages/Pix/PaymentVoucher";
 import { Poupanca } from "../pages/Poupanca";
-import { Profile } from "../pages/Profile";
 import { Qr_Code } from "../pages/Qr_Code";
 import { Recarga } from "../pages/Recarga";
+import { FingerprintRegistration } from "../pages/RegistroDigital";
 import { Transacoes } from "../pages/Transactions";
 import { TransactionsDetails } from "../pages/Transactions/TransactionsDetails";
 import { Transferencia } from "../pages/Transferencia";
@@ -177,9 +177,9 @@ const HomeRoutes: React.FunctionComponent = () => {
             />
 
             <Stack.Screen
-                name="Biometry"
-                component={Biometry}
-                options={{ title: "Biometria" }}
+                name="Fingerprint"
+                component={FingerprintRegistration}
+                options={{ title: "Cadastramento digital" }}
             />
         </Stack.Navigator>
     );

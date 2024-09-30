@@ -1,49 +1,51 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
-import { getHaveBiometrics } from "../functions/getHaveBiometrics";
-import { getSuportedBiometry } from "../functions/getSuportedBiometry";
+import { checkIfFingerprintExists } from "../functions/checkIfFingerprintExists";
+import { checkIfFingerprintSupported } from "../functions/checkIfFingerprintSupported";
 import theme from "../global/styles/theme";
 import { IScreenNavigation } from "../interface";
 
-export const BiometricsRegistrationService: React.FunctionComponent = () => {
+export const FingerprintRegistrationService: React.FunctionComponent = () => {
     const { navigate } = useNavigation<IScreenNavigation>();
 
-    const [isBiometry, setIsBiometry] = useState<boolean>(false);
-    const [suportedBiometry, setSuportedBiometry] = useState<boolean>();
+    const [fingerprintExists, setFingerprintExists] = useState<boolean>(false);
+    const [supportedFingerprint, setSupportedFingerprint] = useState<boolean>();
 
     useEffect(() => {
         (async () => {
-            await getHaveBiometrics(setIsBiometry);
+            await checkIfFingerprintExists(setFingerprintExists);
         })();
     }, []);
 
     useEffect(() => {
         (async () => {
-            await getSuportedBiometry(setSuportedBiometry);
+            await checkIfFingerprintSupported(setSupportedFingerprint);
         })();
-    }, [setSuportedBiometry]);
+    }, [setSupportedFingerprint]);
 
     return (
-        !suportedBiometry ||
-        (!isBiometry && (
+        !supportedFingerprint ||
+        (!fingerprintExists && (
             <Container
-                onPress={() => navigate("Biometry")}
+                onPress={() => navigate("Fingerprint")}
                 activeOpacity={0.8}
                 style={{ elevation: 2 }}
             >
                 <Background
-                    source={require("../assets/background/background-app/backgroun-biometry.png")}
+                    source={require("../assets/background/background-app/background-fingerprint.png")}
                 >
                     <Overlay>
                         <ContainerText>
-                            <Title>Cadastre sua Biometria</Title>
+                            <Title>Cadastre sua Digital</Title>
                             <Text>
                                 Facilite o acesso e aumente a segurança do seu
                                 app.
                             </Text>
                         </ContainerText>
-                        <Image source={require("../assets/biome.png")} />
+                        <Image
+                            source={require("../assets/fingerprint-register.png")}
+                        />
                     </Overlay>
                 </Background>
             </Container>
@@ -66,8 +68,9 @@ const Overlay = styled.View`
     background-color: rgba(102, 163, 255, 0.6);
     flex: 1;
     flex-direction: row;
-    padding: 10px 20px;
+    padding: 10px 14px;
     border-radius: 10px;
+    align-items: center;
 `;
 
 const ContainerText = styled.View`

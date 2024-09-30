@@ -5,7 +5,7 @@ import ReactNativeBiometrics from "react-native-biometrics";
 import * as Keychain from "react-native-keychain";
 import { IUser } from "../interface";
 
-export const getAuthWithBiometry = async (
+export const getAuthWithFingerprint = async (
     setUser: (value: React.SetStateAction<IUser>) => void,
     setLoading: (value: boolean) => void,
 ) => {
@@ -52,7 +52,7 @@ export const getAuthWithBiometry = async (
             }
         })
         .catch(() => {
-            Alert.alert("Falha na autenticação biométrica");
+            Alert.alert("Falha na autenticação com impressão digital.");
         })
         .finally(() => {
             setLoading(false);

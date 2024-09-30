@@ -17,21 +17,21 @@ import { Margin } from "../../../components/Margin";
 import { PrimaryButton } from "../../../components/SendButton";
 import { TextNavigation } from "../../../components/TextNavigation";
 import { AuthContext } from "../../../contexts/auth";
-import { getAuthWithBiometry } from "../../../functions/getAuthWithBiometry";
-import { getHaveBiometrics } from "../../../functions/getHaveBiometrics";
-import { getSuportedBiometry } from "../../../functions/getSuportedBiometry";
+import { getAuthWithFingerprint } from "../../../functions/getAuthWithFingerprint";
+import { checkIfFingerprintExists } from "../../../functions/checkIfFingerprintExists";
+import { checkIfFingerprintSupported } from "../../../functions/checkIfFingerprintSupported";
 import theme from "../../../global/styles/theme";
 import { IFormLogin, IScreenNavigation } from "../../../interface";
 import { getItem } from "../../../storage";
 import {
-    ButtonBiometry,
+    ButtonFingerprint,
     Container,
     ContainerSeparator,
-    IconBiometry,
+    IconFingerprint,
     LineSeparator,
     Scroll,
-    TextBiometry,
     TextCheck,
+    TextFingerprint,
     TextRecoverPassword,
     TextSeparator,
     Title,
@@ -45,8 +45,8 @@ export const Login: React.FunctionComponent = () => {
     const [isReady, setIsReady] = useState<boolean>(false);
     const [isFontsLoaded, setIsFontsLoaded] = useState<boolean>(false);
     const [isDataLoaded, setIsDataLoaded] = useState<boolean>(false);
-    const [haveBiometrics, setHaveBiometrics] = useState<boolean>(false);
-    const [suportedBiometrics, setSuportedBiometrics] = useState<boolean>();
+    const [fingerprintExists, setFingerprintExists] = useState<boolean>(false);
+    const [suportedFingerprint, setSuportedFingerprint] = useState<boolean>();
     const { navigate } = useNavigation<IScreenNavigation>();
 
     const schema = yup.object({
@@ -105,13 +105,13 @@ export const Login: React.FunctionComponent = () => {
 
     useEffect(() => {
         (async () => {
-            await getHaveBiometrics(setHaveBiometrics);
+            await checkIfFingerprintExists(setFingerprintExists);
         })();
     }, []);
 
     useEffect(() => {
         (async () => {
-            await getSuportedBiometry(setSuportedBiometrics);
+            await checkIfFingerprintSupported(setSuportedFingerprint);
         })();
     }, []);
 
@@ -184,7 +184,7 @@ export const Login: React.FunctionComponent = () => {
                     onPress={handleSubmit(handleLogin)}
                 />
 
-                {suportedBiometrics && haveBiometrics && (
+                {suportedFingerprint && fingerprintExists && (
                     <View>
                         <Margin size={20} />
                         <ContainerSeparator>
@@ -195,17 +195,19 @@ export const Login: React.FunctionComponent = () => {
 
                         <Margin size={28} />
 
-                        <ButtonBiometry
+                        <ButtonFingerprint
                             onPress={() =>
-                                getAuthWithBiometry(setUser, setLoading)
+                                getAuthWithFingerprint(setUser, setLoading)
                             }
                             activeOpacity={0.6}
                         >
-                            <TextBiometry>Entrar com biometria</TextBiometry>
-                            <IconBiometry
-                                source={require("../../../assets/icon-biometric.png")}
+                            <TextFingerprint>
+                                Entrar com impressão digital
+                            </TextFingerprint>
+                            <IconFingerprint
+                                source={require("../../../assets/fingerprintLogin.png")}
                             />
-                        </ButtonBiometry>
+                        </ButtonFingerprint>
                         <Margin size={10} />
                     </View>
                 )}

@@ -9,14 +9,14 @@ import { PrimaryButton, SecondaryButton } from "../../components/SendButton";
 import { AuthContext } from "../../contexts/auth";
 import { Container, Img, Scroll, Text, Title } from "./styles";
 
-export const Biometry: React.FunctionComponent = () => {
+export const FingerprintRegistration: React.FunctionComponent = () => {
     const rnBiometrics = new ReactNativeBiometrics();
     const { goBack } = useNavigation();
 
     const { user, setLoading } = useContext(AuthContext);
     const [show, setShow] = useState<boolean>(false);
 
-    const getRegisterBiometry = async () => {
+    const registerFingerprint = async () => {
         await rnBiometrics
             .simplePrompt({
                 promptMessage:
@@ -30,7 +30,7 @@ export const Biometry: React.FunctionComponent = () => {
                 }
             })
             .catch(() => {
-                Alert.alert("Falha na autenticação biométrica");
+                Alert.alert("Falha na autenticação da impressão digital");
             });
     };
 
@@ -38,7 +38,10 @@ export const Biometry: React.FunctionComponent = () => {
         setLoading(true);
         await Keychain.setGenericPassword(user.email, password)
             .then(() => {
-                Alert.alert("Biometria cadastrada");
+                Alert.alert(
+                    "Impressão digital cadastrada",
+                    "Agora você pode acessar a sua conta através da sua digital.",
+                );
                 goBack();
             })
             .then(() => {
@@ -51,11 +54,11 @@ export const Biometry: React.FunctionComponent = () => {
             <Scroll>
                 <Margin size={32} />
 
-                <Title>Cadastre sua Biometria</Title>
+                <Title>Cadastre sua Digital</Title>
 
                 <Margin size={24} />
 
-                <Img source={require("../../assets/biometry.png")} />
+                <Img source={require("../../assets/fingerprint.png")} />
 
                 <Margin size={36} />
 
@@ -67,7 +70,7 @@ export const Biometry: React.FunctionComponent = () => {
 
                 <PrimaryButton
                     title="Continuar"
-                    onPress={getRegisterBiometry}
+                    onPress={registerFingerprint}
                 />
 
                 <Margin size={8} />

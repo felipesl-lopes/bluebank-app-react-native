@@ -56,7 +56,7 @@ export const TextSeparator = styled.Text`
     font-weight: 700;
 `;
 
-export const ButtonBiometry = styled.TouchableOpacity`
+export const ButtonFingerprint = styled.TouchableOpacity`
     border-radius: 8px;
     background-color: ${theme.colors.primary};
     flex-direction: row;
@@ -65,14 +65,14 @@ export const ButtonBiometry = styled.TouchableOpacity`
     align-items: center;
 `;
 
-export const TextBiometry = styled.Text`
+export const TextFingerprint = styled.Text`
     font-size: 15px;
     color: white;
     margin-right: 10px;
     font-weight: 300;
 `;
 
-export const IconBiometry = styled.Image`
+export const IconFingerprint = styled.Image`
     width: 28px;
     height: 28px;
 `;

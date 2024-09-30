@@ -89,7 +89,6 @@ const Container = styled.View`
 const ViewInput = styled.View`
     flex-direction: row;
     align-items: center;
-    padding: 2px;
     margin-bottom: 20px;
     border-width: 2px;
     border-radius: 8px;
@@ -97,7 +96,6 @@ const ViewInput = styled.View`
 
 const Input = styled.TextInput`
     font-size: 16px;
-    padding: 2px;
     margin: 0 4px;
     flex: 1;
     height: 44px;
@@ -105,7 +103,7 @@ const Input = styled.TextInput`
 
 const IconEye = styled(Ionicon)`
     font-size: 24px;
-    padding: 0 8px;
+    padding: 4px 10px;
 `;
 
 const TextError = styled.Text`

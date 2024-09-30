@@ -2,18 +2,18 @@ import ReactNativeBiometrics from "react-native-biometrics";
 
 /**
  * Function to find out if the device supports biometrics.
- * @param setSuportedBiometry
+ * @param setSuportedFingerprint
  */
-export const getSuportedBiometry = async (
-    setSuportedBiometry: (value: boolean) => void,
+export const checkIfFingerprintSupported = async (
+    setSuportedFingerprint: (value: boolean) => void,
 ) => {
     const rnBiometrics = new ReactNativeBiometrics();
 
     await rnBiometrics.isSensorAvailable().then(resultObject => {
         if (resultObject.available) {
-            setSuportedBiometry(true);
+            setSuportedFingerprint(true);
         } else {
-            setSuportedBiometry(false);
+            setSuportedFingerprint(false);
         }
     });
 };

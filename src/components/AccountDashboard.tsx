@@ -63,6 +63,7 @@ const Container = styled.View`
     height: 180px;
     border-radius: 10px;
     overflow: hidden;
+    background-color: ${theme.colors.primary};
 `;
 
 const Background = styled.ImageBackground`
@@ -72,7 +73,7 @@ const Background = styled.ImageBackground`
 
 const Overlay = styled.View`
     flex: 1;
-    background-color: rgba(0, 0, 200, 0.5);
+    background-color: rgba(0, 0, 205, 0.5);
     padding: 14px;
 `;
 
