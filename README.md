@@ -14,12 +14,11 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 ## Screens
 
-![iMockup - Google Pixel 8 Protelas-3](https://github.com/user-attachments/assets/f321c319-ad50-48e0-93c6-93f5f3e5596b)
-![iMockup - Google Pixel 8 Protelas-2](https://github.com/user-attachments/assets/049e0837-b360-4f14-a081-e2930a7fb63d)
-![iMockup - Google Pixel 8 Protelas-1](https://github.com/user-attachments/assets/ba4dcc1f-b32f-400b-b04d-9bfc35dbaa55)
-![iMockup - Google Pixel 8 Protelas](https://github.com/user-attachments/assets/f98bc77c-4264-4f06-937f-2366614f6c11)
-![iMockup - Google Pixel 8 Protelas-4](https://github.com/user-attachments/assets/9ee4d0dd-3d49-4a6e-9cf8-cd36c7914dd1)
-
+![iMockup - Google Pixel 8 Pro](https://github.com/user-attachments/assets/c2803e81-1573-4ab5-a0ac-7618dd96f7cb)
+![iMockup - Google Pixel 8 Pro-4](https://github.com/user-attachments/assets/1f2c7902-0257-49bb-a86c-7da05d855826)
+![iMockup - Google Pixel 8 Pro-1](https://github.com/user-attachments/assets/b37c2675-a163-4d74-b60f-72122673fd7d)
+![iMockup - Google Pixel 8 Pro-2](https://github.com/user-attachments/assets/367f45e6-f6cb-4285-95ec-883a1fd56820)
+![iMockup - Google Pixel 8 Pro-3](https://github.com/user-attachments/assets/259fcc3f-5921-44ca-8a3b-4861547a06f9)
 
 
 ## Step 1: Start the Metro Server
