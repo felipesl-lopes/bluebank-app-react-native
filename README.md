@@ -4,6 +4,24 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
+## Technologies
+
+- TypeScript
+- React Native
+- Node.js
+- Firebase
+
+
+## Screens
+
+![iMockup - Google Pixel 8 Protelas-3](https://github.com/user-attachments/assets/f321c319-ad50-48e0-93c6-93f5f3e5596b)
+![iMockup - Google Pixel 8 Protelas-2](https://github.com/user-attachments/assets/049e0837-b360-4f14-a081-e2930a7fb63d)
+![iMockup - Google Pixel 8 Protelas-1](https://github.com/user-attachments/assets/ba4dcc1f-b32f-400b-b04d-9bfc35dbaa55)
+![iMockup - Google Pixel 8 Protelas](https://github.com/user-attachments/assets/f98bc77c-4264-4f06-937f-2366614f6c11)
+![iMockup - Google Pixel 8 Protelas-4](https://github.com/user-attachments/assets/9ee4d0dd-3d49-4a6e-9cf8-cd36c7914dd1)
+
+
+
 ## Step 1: Start the Metro Server
 
 First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
