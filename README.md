@@ -2,6 +2,12 @@
 
 Aplicativo Bluebank
 
+<img src="https://github.com/felipesllopes/App-Bluebank/assets/99768939/c43d4f93-7565-4190-b02f-97aababa1cee" alt="Application icon" width="120" height="120" />
+
+<br/>
+
+
+
 ## Descrição:
 
 O Bluebank é um aplicativo bancário que permite aos usuários consultar saldo, extratos, realizar transferências e pagamentos, tudo de forma simples e segura. Ele oferece autenticação biométrica para maior segurança nas operações.
@@ -18,6 +24,9 @@ O Bluebank é um aplicativo bancário que permite aos usuários consultar saldo,
 ![iMockup - Google Pixel 8 Pro-2](https://github.com/user-attachments/assets/367f45e6-f6cb-4285-95ec-883a1fd56820)
 ![iMockup - Google Pixel 8 Pro-3](https://github.com/user-attachments/assets/259fcc3f-5921-44ca-8a3b-4861547a06f9)
 
+<br/>
+
+
 
 ## Tecnologias e Ferramentas:
 
@@ -26,6 +35,9 @@ O Bluebank é um aplicativo bancário que permite aos usuários consultar saldo,
 - <strong>react-navigation:</strong> Para navegação entre telas e abas.
 - <strong>react-native-biometrics:</strong> Para autenticação segura via biometria.
 - <strong>styled-components:</strong> Para estilização modular e customizada dos componentes..
+
+ <br/>
+
 
  
 ## Instalação:
@@ -49,7 +61,24 @@ Use o npm para instalar todas as dependências listadas no package.json:
 npm install
 ```
 
+<br/>
 
+
+
+## Funcionalidades:
+
+- <strong>Criação e gerenciamento de conts: </strong> Permite aos usuários abrir nova conta bancária e gerenciar com facilidade.
+- <strong>Transferências bancárias: </strong> Fazer transferências entre contas bancárias.
+- <strong>Pagamento de contas: </strong>Pagamento de contas diretamente pelo Bluebank, de forma simples e prática.
+- <strong>Monitoramento de Transações: </strong> Acompanhamento de todas as transações financeiras em tempo real, garantindo total controle sobre as finanças.
+- <strong>Autenticação Biométrica: </strong> Utilização de impressão digital ou reconhecimento facial para acessar a conta com máxima segurança.
+- <strong>Mudança de Informações: </strong> Atualize informações pessoais e bancárias a qualquer momento através do aplicativo.
+- <strong>Pix: </strong> Faça transferências instantâneas a qualquer hora do dia com o sistema Pix.
+- <strong>Leitor de QR Code: </strong> Leitor de QR Code integrado para realizar pagamentos e transferências de forma rápida e segura.
+- <strong>Verificação de Investimentos: </strong> Acompanhamento de investimentos dentro do aplicativo.
 
 
 <br/>
+ 
+
+
