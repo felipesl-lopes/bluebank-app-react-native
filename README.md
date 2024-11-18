@@ -1,6 +1,6 @@
 # bluebank-app-react-native
 
-Aplicativo Bluebank
+Bluebank app
 
 <img src="https://github.com/felipesllopes/App-Bluebank/assets/99768939/c43d4f93-7565-4190-b02f-97aababa1cee" alt="Application icon" width="120" height="120" />
 
@@ -8,15 +8,15 @@ Aplicativo Bluebank
 
 
 
-## Descrição:
+## Description:
 
-O Bluebank é um aplicativo bancário que permite aos usuários consultar saldo, extratos, realizar transferências e pagamentos, tudo de forma simples e segura. Ele oferece autenticação biométrica para maior segurança nas operações.
+Bluebank is a banking application that allows users to check balances, statements, make transfers and payments, all in a simple and secure way. It offers biometric authentication for greater security in operations.
 
 <br/>
 
 
 
-## Imagens
+## Images
 
 ![iMockup - Google Pixel 8 Pro](https://github.com/user-attachments/assets/c2803e81-1573-4ab5-a0ac-7618dd96f7cb)
 ![iMockup - Google Pixel 8 Pro-4](https://github.com/user-attachments/assets/1f2c7902-0257-49bb-a86c-7da05d855826)
@@ -28,35 +28,35 @@ O Bluebank é um aplicativo bancário que permite aos usuários consultar saldo,
 
 
 
-## Tecnologias e Ferramentas:
+## Technologies and Tools:
 
-- <strong>react-native-firebase:</strong> Para integração com o Firebase, garantindo funcionalidades como autenticação e banco de dados.
-- <strong>react-hook-form e yup:</strong> Para gestão e validação eficiente de formulários.
-- <strong>react-navigation:</strong> Para navegação entre telas e abas.
-- <strong>react-native-biometrics:</strong> Para autenticação segura via biometria.
-- <strong>styled-components:</strong> Para estilização modular e customizada dos componentes..
+- <strong>react-native-firebase:</strong> For integration with Firebase, ensuring features such as authentication and database.
+- <strong>react-hook-form and yup:</strong> For efficient form management and validation.
+- <strong>react-navigation:</strong> For navigation between screens and tabs.
+- <strong>react-native-biometrics:</strong> For secure authentication via biometrics.
+- <strong>styled-components:</strong> For modular and customized styling of components.
 
  <br/>
 
 
  
-## Instalação:
+## Installation:
 
-1- Clone o repositório
+1- Clone the repository
 
-Primeiro, clone o repositório do projeto para sua máquina local:
+First, clone the project repository to your local machine:
 ```
 git clone https://github.com/felipesl-lopes/bluebank-app-react-native.git
 ```
 
-2- Navegue até o diretório do projeto
+2- Navigate to the project directory
 ```
 cd bluebank-app-react-native
 ```
 
-3- Instale as dependências
+3- Install dependencies
 
-Use o npm para instalar todas as dependências listadas no package.json:
+Use npm to install all dependencies listed in package.json:
 ```
 npm install
 ```
@@ -65,17 +65,17 @@ npm install
 
 
 
-## Funcionalidades:
+## Features:
 
-- <strong>Criação e gerenciamento de conts: </strong> Permite aos usuários abrir nova conta bancária e gerenciar com facilidade.
-- <strong>Transferências bancárias: </strong> Fazer transferências entre contas bancárias.
-- <strong>Pagamento de contas: </strong>Pagamento de contas diretamente pelo Bluebank, de forma simples e prática.
-- <strong>Monitoramento de Transações: </strong> Acompanhamento de todas as transações financeiras em tempo real, garantindo total controle sobre as finanças.
-- <strong>Autenticação Biométrica: </strong> Utilização de impressão digital ou reconhecimento facial para acessar a conta com máxima segurança.
-- <strong>Mudança de Informações: </strong> Atualize informações pessoais e bancárias a qualquer momento através do aplicativo.
-- <strong>Pix: </strong> Faça transferências instantâneas a qualquer hora do dia com o sistema Pix.
-- <strong>Leitor de QR Code: </strong> Leitor de QR Code integrado para realizar pagamentos e transferências de forma rápida e segura.
-- <strong>Verificação de Investimentos: </strong> Acompanhamento de investimentos dentro do aplicativo.
+- <strong>Creation and management of accounts: </strong> Allows users to open new bank account and manage with ease.
+- <strong>Bank transfers: </strong> Make transfers between bank accounts.
+- <strong>Bill payment: </strong>Bill payment directly through Bluebank, in a simple and practical way.
+- <strong>Transaction Monitoring:</strong> Monitoring of all financial transactions in real time, ensuring total control over finances.
+- <strong>Biometric Authentication: </strong> Use of fingerprint or facial recognition to access the account with maximum security.
+- <strong>Change of Information:</strong> Update personal and banking information at any time through the app.
+- <strong>Pix: </strong> Make instant transfers at any time of the day with the Pix system.
+- <strong>QR Code Reader:</strong> Integrated QR Code reader to make payments and transfers quickly and securely.
+- <strong>Investment Verification: </strong> Monitoring of investments within the application.
 
 
 <br/>
